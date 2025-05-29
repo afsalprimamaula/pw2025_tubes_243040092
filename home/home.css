@@ -1,0 +1,247 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    color: #333;
+    background-color: #f4f4f4; /* Fallback background */
+}
+
+/* Updated Header/Navbar Styles */
+.header {
+    background-color: #4CAF50; /* Green background */
+    padding: 15px 0; /* Padding vertikal untuk bar hijau */
+    color: white;
+    /* display: flex, justify-content, align-items dipindahkan ke inner-container */
+}
+
+.header-inner-container {
+    max-width: 1100px; /* Atur lebar maksimum konten navbar, sesuaikan jika perlu */
+    margin: 0 auto;    /* Untuk menengahkan kontainer ini */
+    display: flex;
+    justify-content: space-between; /* Mendorong logo ke kiri dan nav ke kanan */
+    align-items: center;
+    padding: 0 20px; /* Memberi sedikit jarak dari tepi jika lebar layar < max-width */
+}
+
+.logo-placeholder {
+    width: 120px;   /* Lebar disesuaikan agar lebih mirip gambar */
+    height: 30px;   /* Tinggi disesuaikan */
+    background-color: white;
+    /* border-radius: 5px; */ /* Dihilangkan karena di gambar terlihat kotak tajam */
+}
+
+.nav {
+    /* Tidak memerlukan gaya khusus di sini untuk layout desktop dasar */
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 30px; /* Jarak antar link navigasi, disesuaikan */
+    font-weight: bold;
+    font-size: 14px; /* Ukuran font link, disesuaikan agar mirip gambar */
+}
+/* End of Updated Header/Navbar Styles */
+
+.video-hero-section {
+    width: 100%;
+    height: 90vh; /* Sesuai dengan kode Anda */
+    overflow: hidden;
+    position: relative;
+    background-color: #333;
+}
+
+/* Style untuk video di dalam video-hero-section jika belum ada */
+.video-hero-section video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Default, bisa disesuaikan dengan object-position jika perlu */
+    /* object-position: center center; */ /* Default */
+}
+
+.hero-section {
+    background-color: #e8f5e9; /* Light green background */
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.hero-section img {
+    max-width: 300px; /* Adjust as needed */
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.content-section {
+    padding: 40px 20px;
+    background-color: white;
+}
+
+.content-section p {
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.image-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 40px 20px;
+    background-color: #333; /* Dark background for this section */
+    color: white;
+    text-align: center;
+}
+
+.image-grid .grid-item {
+    flex-basis: 45%; /* Adjust for number of items */
+}
+
+.image-grid img {
+    width: 100%;
+    max-width: 300px; /* Max width for images */
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.image-grid h3 {
+    margin-bottom: 5px;
+    color: #eee;
+}
+
+.image-grid p {
+    font-size: 0.9em;
+    color: #ccc;
+}
+
+.testimonials-section {
+    padding: 40px 20px;
+    background-color: #f9f9f9; /* Light grey background */
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    text-align: center;
+}
+
+.testimonial {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex-basis: 30%; /* Adjust based on number of testimonials */
+}
+
+.testimonial img { /* Assuming small avatar images */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    background-color: #ddd; /* Placeholder color */
+    object-fit: cover; /* Ensures image covers the area nicely */
+}
+
+.testimonial .quote {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.testimonial .name {
+    font-weight: bold;
+    color: #333;
+}
+
+.testimonial .description {
+    font-size: 0.8em;
+    color: #777;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 30px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start; /* Align items to the top */
+    font-size: 0.9em;
+}
+
+.footer-column {
+    flex-basis: 30%; /* Adjust as needed */
+}
+
+.footer-column h4 {
+    color: #f0f0f0;
+    margin-bottom: 10px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+    color: #ccc;
+    text-decoration: none;
+}
+ .footer-column ul li a:hover {
+    color: white;
+}
+
+.footer-social-icons {
+    margin-top:10px;
+}
+.footer-social-icons img { /* Assuming you have social icons */
+    width: 20px; /* Adjust as needed */
+    height: 20px;
+    margin-right: 10px;
+    filter: invert(75%); /* Make them lighter on dark background */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    /* Updated Responsive Header Styles */
+    .header-inner-container {
+        flex-direction: column; /* Susun logo dan nav secara vertikal */
+        align-items: center;    /* Tengahkan item saat tersusun vertikal */
+    }
+
+    .logo-placeholder {
+        margin-bottom: 15px; /* Beri jarak antara logo dan navigasi saat di mobile */
+    }
+
+    .nav {
+        margin-top: 0; /* Reset margin-top jika ada dari aturan sebelumnya */
+        display: flex;
+        flex-direction: column; /* Susun link navigasi secara vertikal */
+        align-items: center;    /* Tengahkan link navigasi */
+        width: 100%; /* Agar link bisa ditata lebih baik */
+    }
+
+    .nav a {
+        margin: 8px 0;  /* Jarak vertikal antar link di mobile, hilangkan margin horizontal */
+        padding: 8px 15px; /* Tambah padding agar lebih mudah disentuh */
+    }
+    /* End of Updated Responsive Header Styles */
+
+    /* Styles for other sections from your original media query */
+    .image-grid, .testimonials-section, .footer {
+        flex-direction: column;
+        align-items: center;
+    }
+    .image-grid .grid-item, .testimonial, .footer-column {
+        flex-basis: 80%; /* Take more width on smaller screens */
+        margin-bottom: 20px;
+    }
+     .footer-column {
+        text-align: center;
+     }
+
+    /* Remove or comment out the old .header styling for mobile if it conflicts */
+    /* .header {
+        flex-direction: column;
+    } */
+}
