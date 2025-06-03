@@ -1,0 +1,130 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family:  'poppins'; /* Ganti dengan font dari desain Figma Anda jika perlu */
+}
+
+.main-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.image-section {
+    /* GANTI DENGAN URL_GAMBAR_ANDA.jpg atau path yang sesuai jika Anda menyimpannya secara lokal */
+    background-image: url('img/bc_login.webp'); /* Ganti dengan path gambar latar Anda */
+    background-size: cover;
+    background-position: center;
+    flex: 1;
+    display: none; /* Sembunyikan di layar kecil secara default */
+}
+
+.form-section {
+    flex: 1; /* Ambil sisa ruang, atau semua ruang di layar kecil */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background-color: #fff; /* Warna latar belakang bagian form */
+    position: relative; /* Untuk positioning logo */
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    /* Ganti URL_LOGO_MUARA_JAMBU.png di HTML atau atur src di sini jika menggunakan content */
+    max-width: 170px; /* Sesuaikan ukuran logo */
+}
+
+.login-form { /* Class ini digunakan baik untuk login maupun registrasi form */
+    width: 100%;
+    max-width: 400px; /* Lebar maksimum form */
+}
+
+.login-form h2 {
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #000; /* Warna teks judul form (Login/Sign up) */
+    text-align: left; /* Sesuai desain */
+}
+
+.social-icons {
+    margin-bottom: 30px;
+    text-align: left; /* Sesuai desain */
+}
+
+.social-icons a {
+    font-size: 24px;
+    margin-right: 15px;
+    color: #000; /* Warna ikon sosial media */
+    text-decoration: none;
+}
+.social-icons a:last-child {
+    margin-right: 0;
+}
+
+
+.form-label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #000; /* Warna label (Name, Email, dll.) */
+}
+
+.form-control { /* Styling umum untuk input dari Bootstrap */
+    border-radius: 0.5rem; /* Radius border input field */
+    padding: 0.75rem 1rem;
+    border: 1px solid #ced4da; /* Border default Bootstrap, bisa disesuaikan */
+}
+
+/* Styling spesifik untuk input field berwarna hijau seperti di Figma */
+.form-control.email-input { /* Class ini akan memberi warna hijau pada input */
+    background-color: #28a745; /* Warna hijau dari Figma (sesuaikan jika perlu) */
+    color: white;
+    border-color: #28a745; /* Samakan border dengan background */
+}
+.form-control.email-input::placeholder { /* Warna placeholder untuk input hijau */
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Styling untuk tombol login/sign up berwarna hitam */
+.btn-login { /* Class ini digunakan untuk tombol Login dan Sign up */
+    background-color: #000; /* Warna tombol */
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 0.5rem; /* Radius border tombol */
+    width: auto; /* Lebar tombol menyesuaikan konten, atau 100% jika ingin full width */
+    display: inline-block;
+    text-align: center;
+}
+.btn-login:hover {
+    background-color: #333; /* Warna hover tombol */
+    color: white;
+}
+
+/* Media Queries untuk Responsivitas */
+/* Tampilkan image-section pada layar medium (tablet) ke atas */
+@media (min-width: 768px) {
+    .image-section {
+        display: block; /* Tampilkan kolom gambar */
+    }
+    .form-section {
+        /* Efek rounded corner pada sisi kiri form saat kolom gambar tampil */
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        margin-left: -20px; /* Memberi efek sedikit overlap jika diinginkan, atau sesuaikan */
+        z-index: 1; /* Pastikan form di atas gambar jika ada overlap */
+    }
+}
+
+/* Penyesuaian proporsi kolom untuk layar besar (desktop) */
+@media (min-width: 992px) {
+    .image-section {
+        flex: 1.2; /* Beri ruang lebih untuk gambar jika desainnya demikian */
+    }
+    .form-section {
+        flex: 0.8; /* Sesuaikan proporsi form */
+    }
+}

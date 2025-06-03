@@ -1,247 +1,962 @@
+/* General Styling */
+:root {
+    --primary-color: #4CAF50; /* Hijau utama */
+    --accent-color: #DDF6D2; /* Hijau lebih terang */
+    --text-color: #333; /* Warna teks utama untuk konten */
+    --light-gray: #f4f4f4;
+    --dark-gray: #555;
+    --white: #fff;
+    --black: #000;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: sans-serif;
+    font-family: 'Arial', sans-serif; /* Ganti dengan 'Poppins' jika Anda ingin Google Font */
     margin: 0;
-    color: #333;
-    background-color: #f4f4f4; /* Fallback background */
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--white);
 }
 
-/* Updated Header/Navbar Styles */
-.header {
-    background-color: #4CAF50; /* Green background */
-    padding: 15px 0; /* Padding vertikal untuk bar hijau */
-    color: white;
-    /* display: flex, justify-content, align-items dipindahkan ke inner-container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.header-inner-container {
-    max-width: 1100px; /* Atur lebar maksimum konten navbar, sesuaikan jika perlu */
-    margin: 0 auto;    /* Untuk menengahkan kontainer ini */
-    display: flex;
-    justify-content: space-between; /* Mendorong logo ke kiri dan nav ke kanan */
-    align-items: center;
-    padding: 0 20px; /* Memberi sedikit jarak dari tepi jika lebar layar < max-width */
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    color: var(--text-color);
+    line-height: 1.2;
 }
 
-.logo-placeholder {
-    width: 120px;   /* Lebar disesuaikan agar lebih mirip gambar */
-    height: 30px;   /* Tinggi disesuaikan */
-    background-color: white;
-    /* border-radius: 5px; */ /* Dihilangkan karena di gambar terlihat kotak tajam */
+p {
+    margin-bottom: 1em;
 }
 
-.nav {
-    /* Tidak memerlukan gaya khusus di sini untuk layout desktop dasar */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Untuk menghindari spasi bawah pada gambar di dalam flex/grid */
 }
 
-.nav a {
-    color: white;
+a {
     text-decoration: none;
-    margin-left: 30px; /* Jarak antar link navigasi, disesuaikan */
-    font-weight: bold;
-    font-size: 14px; /* Ukuran font link, disesuaikan agar mirip gambar */
-}
-/* End of Updated Header/Navbar Styles */
-
-.video-hero-section {
-    width: 100%;
-    height: 90vh; /* Sesuai dengan kode Anda */
-    overflow: hidden;
-    position: relative;
-    background-color: #333;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
 }
 
-/* Style untuk video di dalam video-hero-section jika belum ada */
-.video-hero-section video {
+a:hover {
+    color: var(--accent-color);
+}
+
+.section-title {
+    font-size: 2.8em;
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: var(--text-color); /* Pastikan warna konsisten */
+}
+
+.section-subtitle {
+    font-size: 1.1em;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--dark-gray);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Header and Navbar */
+.hero-section {
+    height: 650px; /* Tinggi hero section dengan video */
+    position: relative; /* Penting untuk penempatan video, overlay, dan navbar */
+    overflow: hidden; /* Pastikan video tidak meluap */
+    display: flex; /* Untuk tata letak vertikal konten (navbar, hero-content) */
+    flex-direction: column;
+    justify-content: space-between; /* Menjaga navbar di atas dan hero-content di tengah/bawah */
+    color: var(--white); /* Pastikan teks default di hero berwarna putih agar kontras */
+}
+
+/* Style untuk Video Latar Belakang Hero (Video Apel) */
+.hero-video-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -2; /* Posisikan di paling belakang (di bawah overlay dan navbar) */
+    transform: translate(-50%, -50%);
+    object-fit: cover; /* Pastikan video menutupi seluruh area tanpa distorsi */
+    filter: brightness(0.9); /* Ditingkatkan menjadi 0.9 (lebih terang) */
+}
+
+/* Style untuk Overlay Video (untuk kontras teks) */
+.hero-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Default, bisa disesuaikan dengan object-position jika perlu */
-    /* object-position: center center; */ /* Default */
+    background-color: rgba(0, 0, 0, 0.3); /* Opasitas diturunkan menjadi 0.3 (lebih transparan) */
+    z-index: -1; /* Di atas video, di bawah navbar */
 }
 
-.hero-section {
-    background-color: #e8f5e9; /* Light green background */
-    text-align: center;
-    padding: 50px 20px;
-}
-
-.hero-section img {
-    max-width: 300px; /* Adjust as needed */
-    height: auto;
-    margin-bottom: 20px;
-}
-
-.content-section {
-    padding: 40px 20px;
-    background-color: white;
-}
-
-.content-section p {
-    line-height: 1.6;
-    color: #555;
-    margin-bottom: 20px;
-}
-
-.image-grid {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
-    padding: 40px 20px;
-    background-color: #333; /* Dark background for this section */
-    color: white;
-    text-align: center;
-}
-
-.image-grid .grid-item {
-    flex-basis: 45%; /* Adjust for number of items */
-}
-
-.image-grid img {
+/* Navbar (tetap transparan dan menimpa video) */
+.navbar {
+    position: relative; /* Ini agar z-index bekerja relatif terhadap parent flex container */
+    z-index: 1001; /* Pastikan navbar berada di atas video dan overlay */
     width: 100%;
-    max-width: 300px; /* Max width for images */
-    height: auto;
-    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0); /* Navbar sangat transsparan di atas video */
+    padding: 15px 0;
+    box-shadow: none; /* Hapus shadow jika tidak diperlukan di atas video */
+    backdrop-filter: blur(1px); /* Memberi sedikit efek blur pada latar belakang navbar */
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-icon {
+    font-size: 1.6em;
+    color: var(--white); /* Warna ikon menjadi putih */
+}
+
+.navbar .logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--white); /* Warna logo menjadi putih */
+}
+
+.navbar .nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 35px;
+}
+
+.navbar .nav-links li {
+    margin: 0;
+}
+
+.navbar .nav-links a {
+    text-decoration: none;
+    color: var(--white); /* Warna link navigasi menjadi putih */
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 5px 0;
+}
+
+.navbar .nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box input {
+    padding: 8px 10px 8px 35px;
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Border putih transparan */
+    border-radius: 20px;
+    outline: none;
+    font-size: 0.9em;
+    color: var(--white); /* Warna teks input menjadi putih */
+    width: 150px;
+    background-color: rgba(255, 255, 255, 0.2); /* Input lebih transparan */
+    transition: all 0.3s ease;
+}
+
+.search-box input::placeholder {
+    color: rgba(255, 255, 255, 0.7); /* Warna placeholder menjadi putih transparan */
+}
+
+.search-box input:focus {
+    width: 200px;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(var(--primary-color), 0.5);
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    color: var(--white); /* Warna ikon menjadi putih */
+    font-size: 0.9em;
+}
+
+.login-button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: var(--accent-color);
+}
+
+/* Hero Content (untuk teks/slogan atau elemen lain di atas video) */
+.hero-content {
+    position: relative; /* Penting agar z-index bekerja */
+    z-index: 1; /* Di atas overlay video, di bawah navbar */
+    flex-grow: 1; /* Biarkan mengisi sisa ruang */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Posisikan di tengah vertikal */
+    align-items: center; /* Posisikan di tengah horizontal */
+    text-align: center;
+    padding: 20px; /* Padding agar konten tidak menempel tepi */
+}
+
+
+
+/* Experience Section */
+.experience-section {
+    padding: 80px 0;
+    background-color: var(--white);
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Memaksa 4 kolom */
+    gap: 30px;
+}
+
+.card {
+    background-color: var(--accent-color); /* Latar belakang kartu menjadi hijau terang */
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card i.card-icon { /* Styling untuk ikon di dalam kartu pengalaman */
+    margin-bottom: 25px;
+    font-size: 35px;
+    color: var(--primary-color); /* Warna ikon */
+    display: block;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.card p {
+    font-size: 0.98em;
+    color: var(--dark-gray);
+}
+
+/* Spotlight Section */
+.spotlight-section {
+    background-color: var(--black); /* Latar belakang hitam sesuai gambar */
+    padding: 80px 0 80px 80px; /* Padding kiri untuk menggeser konten ke kiri */
+    color: var(--white); /* Warna teks putih untuk kontras */
+    overflow: hidden; /* Penting untuk carousel */
+}
+
+.spotlight-content-wrapper {
+    display: flex;
+    padding-right: 20px; /* Pertahankan padding kanan untuk jarak dari tepi viewport */
+    width: 100%; /* Pastikan mengambil lebar penuh dari parent */
+    align-items: flex-start; /* Vertically align items to the top */
+    gap: 40px; /* Jarak antara teks dan carousel */
+}
+
+.spotlight-text-area {
+    flex: 0 0 350px; /* Lebar tetap untuk area teks di kiri */
+    min-width: 300px;
+    padding-right: 20px; /* Padding agar teks tidak terlalu dekat dengan carousel */
+    text-align: left; /* Teks rata kiri */
+    position: sticky; /* Membuat area teks tetap di tempat saat scroll carousel */
+    top: 80px; /* Sesuaikan dengan tinggi navbar atau posisi yang diinginkan */
+    align-self: flex-start; /* Penting untuk sticky dalam flex container */
+    height: fit-content; /* Agar tidak mengambil tinggi penuh */
+}
+
+.spotlight-header {
+    text-align: left; /* Header teks rata kiri */
+    margin-bottom: 0; /* Hapus margin bawah default */
+}
+
+.spotlight-header h2 {
+    font-size: 1.2em;
+    color: var(--primary-color); /* Warna hijau untuk "SPOTLIGHT" */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
     margin-bottom: 10px;
 }
 
-.image-grid h3 {
-    margin-bottom: 5px;
-    color: #eee;
+.spotlight-header h3 {
+    font-size: 3.2em;
+    margin-top: 0;
+    line-height: 1.2;
+    font-weight: 700;
+    color: var(--white); /* Warna putih untuk judul utama */
 }
 
-.image-grid p {
-    font-size: 0.9em;
-    color: #ccc;
-}
-
-.testimonials-section {
-    padding: 40px 20px;
-    background-color: #f9f9f9; /* Light grey background */
+.carousel-navigation {
     display: flex;
-    justify-content: space-around;
-    gap: 20px;
+    align-items: center;
+    margin-top: 40px; /* Jarak dari judul utama */
+    color: var(--white);
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.current-slide {
+    font-size: 1.5em; /* Ukuran lebih besar untuk nomor slide saat ini */
+    font-weight: 700;
+    margin-right: 5px;
+}
+
+.slash { /* Untuk pemisah "/" */
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 2px;
+}
+
+.total-slides {
+    margin-left: 5px;
+    color: rgba(255, 255, 255, 0.7); /* Agak redup */
+}
+
+.nav-arrows {
+    margin-left: 30px; /* Jarak dari nomor slide */
+    display: flex;
+    gap: 15px;
+}
+
+.nav-arrows button {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Border putih transparan */
+    border-radius: 50%; /* Tombol bulat */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.nav-arrows button i {
+    color: var(--white); /* Ikon putih */
+    font-size: 1em;
+}
+
+.nav-arrows button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--white);
+}
+
+.spotlight-carousel-container {
+    flex-grow: 1; /* Mengisi sisa ruang */
+    overflow: hidden; /* Penting untuk carousel */
+}
+
+.spotlight-carousel {
+    display: flex;
+    overflow-x: scroll; /* Mengaktifkan scroll horizontal */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 20px; /* Jarak antar kartu */
+    padding-bottom: 20px; /* Ruang untuk scrollbar */
+}
+
+/* Kustomisasi scrollbar untuk browser WebKit (Chrome, Safari) */
+.spotlight-carousel::-webkit-scrollbar {
+    height: 10px;
+}
+
+.spotlight-carousel::-webkit-scrollbar-track {
+    background: #444; /* Track scrollbar lebih gelap */
+    border-radius: 10px;
+}
+
+.spotlight-carousel::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3); /* Thumb scrollbar putih transparan */
+    border-radius: 10px;
+    border: 2px solid #444; /* Border thumb */
+}
+
+
+.spotlight-card {
+    flex: 0 0 350px; /* Lebar tetap untuk setiap kartu, sesuaikan jika perlu */
+    scroll-snap-align: start;
+    background-color: var(--white); /* Latar belakang kartu putih */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Shadow lebih gelap */
+    color: var(--text-color); /* Teks di dalam kartu kembali hitam */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: grab; /* Menunjukkan bisa digeser */
+    position: relative; /* Penting untuk positioning teks overlay */
+}
+
+.spotlight-card:active {
+    cursor: grabbing; /* Menunjukkan sedang digeser */
+}
+
+.spotlight-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.spotlight-card .spotlight-image-wrapper {
+    position: relative; /* Untuk menempatkan ikon overlay */
+    width: 100%;
+    height: 500px; /* Tinggi gambar ditingkatkan */
+    overflow: hidden;
+}
+
+.spotlight-card .spotlight-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.spotlight-card .image-overlay-icon {
+    position: absolute;
+    top: 20px; /* Sesuaikan posisi ikon dari atas */
+    right: 20px; /* Sesuaikan posisi ikon dari kanan */
+    transform: none; /* Hapus transform karena posisi sudah fixed */
+    background-color: rgba(255, 255, 255, 0.7); /* Latar belakang ikon transparan putih */
+    border-radius: 8px; /* Sudut sedikit membulat sesuai gambar */
+    width: 40px; /* Ukuran ikon lebih kecil */
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1; /* <--- DIUBAH: Selalu terlihat */
+    z-index: 2; /* Pastikan di atas gambar dan teks overlay */
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Tambahkan border tipis */
+}
+
+/* Hapus hover opacity untuk image-overlay-icon jika selalu terlihat */
+/* .spotlight-card:hover .image-overlay-icon {
+    opacity: 1;
+} */
+
+.spotlight-card .image-overlay-icon i {
+    font-size: 1.2em; /* Ukuran ikon lebih kecil */
+    color: var(--text-color); /* Warna ikon */
+}
+
+.spotlight-card-content {
+    position: absolute; /* <--- DIUBAH: Posisikan absolut */
+    bottom: 0; /* <--- DIUBAH: Posisikan di bawah */
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)); /* <--- DIUBAH: Gradient overlay */
+    padding: 20px;
+    padding-top: 80px; /* <--- DIUBAH: Padding atas untuk teks agar tidak menempel gambar */
+    text-align: left; /* Teks di dalam kartu rata kiri */
+    color: var(--white); /* <--- DIUBAH: Warna teks menjadi putih */
+    z-index: 1; /* Di atas gambar, di bawah ikon overlay */
+}
+
+.spotlight-card-content h4 {
+    font-size: 1.4em;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--white); /* <--- DIUBAH: Warna judul menjadi putih */
+}
+
+.spotlight-card-content p {
+    font-size: 0.95em;
+    color: rgba(255, 255, 255, 0.8); /* <--- DIUBAH: Warna paragraf menjadi putih transparan */
+    line-height: 1.5;
+}
+
+
+/* Testimonial Section */
+.testimonial-section {
+    padding: 80px 0;
+    background-color: var(--white);
     text-align: center;
 }
 
-.testimonial {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    flex-basis: 30%; /* Adjust based on number of testimonials */
-}
-
-.testimonial img { /* Assuming small avatar images */
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-    background-color: #ddd; /* Placeholder color */
-    object-fit: cover; /* Ensures image covers the area nicely */
-}
-
-.testimonial .quote {
-    font-style: italic;
-    color: #555;
-    margin-bottom: 10px;
-}
-
-.testimonial .name {
-    font-weight: bold;
-    color: #333;
-}
-
-.testimonial .description {
-    font-size: 0.8em;
-    color: #777;
-}
-
-.footer {
-    background-color: #333;
-    color: white;
-    padding: 30px 20px;
+.testimonial-carousel {
     display: flex;
-    justify-content: space-around;
-    align-items: flex-start; /* Align items to the top */
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 25px;
+    padding-bottom: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Kustomisasi scrollbar untuk browser WebKit (Chrome, Safari) */
+.testimonial-carousel::-webkit-scrollbar {
+    height: 10px;
+}
+
+.testimonial-carousel::-webkit-scrollbar-track {
+    background: #e0e0e0;
+    border-radius: 10px;
+}
+
+.testimonial-carousel::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+}
+
+.testimonial-card {
+    flex: 0 0 380px;
+    scroll-snap-align: start;
+    background-color: var(--light-gray);
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.testimonial-card img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-card p {
+    font-style: italic;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    color: var(--dark-gray);
+    font-size: 1.05em;
+}
+
+.testimonial-card span {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1em;
+}
+
+
+
+/* Map Section */
+.map-section {
+    padding: 80px 0;
+    background-color: var(--light-gray);
+}
+
+.map-box {
+    background-color: var(--white);
+    border-radius: 12px;
+    padding: 50px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.map-box .subtitle-map {
     font-size: 0.9em;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+    font-weight: 600;
 }
 
-.footer-column {
-    flex-basis: 30%; /* Adjust as needed */
+.map-box h3 {
+    font-size: 2.8em;
+    margin-bottom: 40px;
+    font-weight: 700;
+    position: relative; /* Penting untuk positioning pseudo-elemen */
+    display: inline-block; /* Agar lebar elemen sesuai dengan konten teksnya */
+    padding: 0 20px; /* Tambahkan padding agar ada ruang untuk garis di samping */
 }
 
-.footer-column h4 {
-    color: #f0f0f0;
+/* --- TAMBAH: Pseudo-elemen untuk garis di samping kiri --- */
+.map-box h3::before {
+    content: ''; /* Konten kosong adalah wajib */
+    position: absolute;
+    left: -300px; /* Posisikan di paling kiri dari elemen h3 */
+    top: 50%; /* Posisikan di tengah vertikal */
+    transform: translateY(-50%); /* Geser ke atas setengah dari tingginya sendiri */
+    width: 300px; /* Lebar garis, sesuaikan sesuai keinginan */
+    height: 3px; /* Ketebalan garis */
+    background-color: var(--text-color); /* Warna garis (hitam atau abu-abu gelap) */
+}
+
+/* --- TAMBAH: Pseudo-elemen untuk garis di samping kanan --- */
+.map-box h3::after {
+    content: ''; /* Konten kosong adalah wajib */
+    position: absolute;
+    right: -300px; /* Posisikan di paling kanan dari elemen h3 */
+    top: 50%; /* Posisikan di tengah vertikal */
+    transform: translateY(-50%); /* Geser ke atas setengah dari tingginya sendiri */
+    width: 300px; /* Lebar garis, sesuaikan sesuai keinginan */
+    height: 3px; /* Ketebalan garis */
+    background-color: var(--text-color); /* Warna garis (hitam atau abu-abu gelap) */
+}
+
+.map-box iframe {
+    border-radius: 10px;
+    width: 100%;
+    height: 500px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments for the lines */
+@media (max-width: 768px) {
+    .map-box h3::before,
+    .map-box h3::after {
+        width: 50px; /* Smaller width for lines on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .map-box h3 {
+        padding: 0 15px; /* Adjust padding on smaller screens */
+    }
+    .map-box h3::before,
+    .map-box h3::after {
+        width: 30px; /* Even smaller width for lines on very small screens */
+    }
+}
+
+/* Footer */
+.footer {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 60px 0 30px;
+    font-size: 0.95em;
+}
+
+.footer .footer-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-col h4 {
+    color: var(--white);
+    font-size: 1.4em;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.footer-col p {
+    font-size: 0.8em;
+    line-height: 1;
+    color: #ccc;
     margin-bottom: 10px;
 }
 
-.footer-column ul {
-    list-style: none;
-    padding: 0;
+.footer-col-contact p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.footer-column ul li {
-    margin-bottom: 8px;
+.footer-col-contact p i {
+    color: var(--primary-color);
+    font-size: 1.1em;
 }
 
-.footer-column ul li a {
-    color: #ccc;
-    text-decoration: none;
-}
- .footer-column ul li a:hover {
-    color: white;
+
+.footer-col .social-icons {
+    margin-top: 20px;
 }
 
-.footer-social-icons {
-    margin-top:10px;
-}
-.footer-social-icons img { /* Assuming you have social icons */
-    width: 20px; /* Adjust as needed */
-    height: 20px;
-    margin-right: 10px;
-    filter: invert(75%); /* Make them lighter on dark background */
+.footer-col .social-icons a {
+    color: var(--white);
+    font-size: 1.5em;
+    margin-right: 18px;
+    transition: color 0.3s ease;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    /* Updated Responsive Header Styles */
-    .header-inner-container {
-        flex-direction: column; /* Susun logo dan nav secara vertikal */
-        align-items: center;    /* Tengahkan item saat tersusun vertikal */
+.footer-col .social-icons a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #333;
+    padding-top: 30px;
+    font-size: 0.85em;
+    color: #aaa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-bottom .footer-links a {
+    color: #aaa;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom .footer-links a:hover {
+    color: var(--primary-color);
+}
+
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .navbar .nav-links {
+        gap: 25px;
+    }
+    .search-box input {
+        width: 130px;
+    }
+    .search-box input:focus {
+        width: 180px;
+    }
+    .hero-content {
+        /* Sesuaikan jika ada teks/slogan */
+    }
+    .spotlight-header h3 {
+        font-size: 2.8em;
+    }
+    .map-box h3 {
+        font-size: 2.5em;
+    }
+    .spotlight-content-wrapper {
+        flex-direction: column; /* Stack columns on smaller screens */
+        align-items: flex-start; /* Align text to left */
+        gap: 30px;
+    }
+    .spotlight-text-area {
+        width: 100%;
+        padding-right: 0;
+        position: static; /* Hilangkan sticky di mobile */
+        top: auto;
+    }
+    .spotlight-carousel-container {
+        width: 100%;
+    }
+    .spotlight-carousel {
+        padding-left: 20px; /* Kembali berikan padding agar tidak menempel tepi */
+        padding-right: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar .nav-links {
+        display: none; /* Sembunyikan nav links untuk mode mobile */
     }
 
-    .logo-placeholder {
-        margin-bottom: 15px; /* Beri jarak antara logo dan navigasi saat di mobile */
+    .navbar-container {
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
-    .nav {
-        margin-top: 0; /* Reset margin-top jika ada dari aturan sebelumnya */
-        display: flex;
-        flex-direction: column; /* Susun link navigasi secara vertikal */
-        align-items: center;    /* Tengahkan link navigasi */
-        width: 100%; /* Agar link bisa ditata lebih baik */
+    .navbar-left,
+    .navbar-right {
+        margin-bottom: 10px;
     }
-
-    .nav a {
-        margin: 8px 0;  /* Jarak vertikal antar link di mobile, hilangkan margin horizontal */
-        padding: 8px 15px; /* Tambah padding agar lebih mudah disentuh */
+    .navbar-right {
+        width: 100%;
+        justify-content: center;
     }
-    /* End of Updated Responsive Header Styles */
-
-    /* Styles for other sections from your original media query */
-    .image-grid, .testimonials-section, .footer {
-        flex-direction: column;
-        align-items: center;
+    .search-box input {
+        width: 180px;
     }
-    .image-grid .grid-item, .testimonial, .footer-column {
-        flex-basis: 80%; /* Take more width on smaller screens */
-        margin-bottom: 20px;
+    .search-box input:focus {
+        width: 230px;
     }
-     .footer-column {
+    .hero-section {
+        height: 550px;
+    }
+    .section-title {
+        font-size: 2.2em;
+    }
+    .section-subtitle {
+        font-size: 1em;
+    }
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 kolom di tablet */
+    }
+    .testimonial-card {
+        flex: 0 0 340px;
+    }
+    .map-box iframe {
+        height: 400px;
+    }
+    .footer .footer-columns {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         text-align: center;
-     }
+    }
+    .footer-col-contact p {
+        justify-content: center;
+    }
+    .footer-col .social-icons {
+        text-align: center;
+    }
+}
 
-    /* Remove or comment out the old .header styling for mobile if it conflicts */
-    /* .header {
+@media (max-width: 768px) {
+    .navbar-container {
         flex-direction: column;
-    } */
+    }
+
+    .navbar-left {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+
+    .hero-section {
+        height: 450px;
+    }
+    .hero-content {
+        /* Sesuaikan jika ada teks/slogan */
+    }
+
+    .video-section, .experience-section, .spotlight-section, .testimonial-section, .map-section, .footer {
+        padding: 50px 0;
+    }
+
+    .section-title {
+        font-size: 2em;
+    }
+    .spotlight-header h3 {
+        font-size: 2.2em;
+    }
+    .map-box h3 {
+        font-size: 2em;
+    }
+    .map-box {
+        padding: 30px;
+    }
+    .map-box iframe {
+        height: 300px;
+    }
+
+    .testimonial-carousel {
+        padding-left: 15px;
+        padding-right: 15px;
+        gap: 15px;
+    }
+    .testimonial-card {
+        flex: 0 0 300px;
+    }
+    .footer-columns {
+        grid-template-columns: 1fr; /* Satu kolom di mobile */
+    }
+    .cards-grid {
+        grid-template-columns: 1fr; /* 1 kolom di mobile */
+    }
+    .spotlight-carousel {
+        padding-left: 15px; /* Sesuaikan padding carousel di mobile */
+        padding-right: 15px;
+    }
+    .spotlight-card {
+        flex: 0 0 80%; /* Kartu mengisi 80% lebar layar */
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar .logo {
+        font-size: 1.5em;
+    }
+    .profile-icon {
+        font-size: 1.3em;
+    }
+    .login-button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+    .search-box input {
+        width: 150px;
+        font-size: 0.85em;
+    }
+    .search-box input:focus {
+        width: 180px;
+    }
+    .hero-section {
+        height: 380px;
+    }
+    .hero-content {
+        /* Sesuaikan jika ada teks/slogan */
+    }
+
+    .section-title {
+        font-size: 1.8em;
+    }
+    .section-subtitle {
+        font-size: 0.9em;
+    }
+
+    .card h3 {
+        font-size: 1.3em;
+    }
+    .testimonial-card {
+        flex: 0 0 260px;
+    }
+
+    .map-box .subtitle-map {
+        font-size: 0.8em;
+    }
+    .map-box h3 {
+        font-size: 1.8em;
+        margin-bottom: 30px;
+    }
+    .map-box iframe {
+        height: 250px;
+    }
+
+    .footer-col h4 {
+        font-size: 1.2em;
+    }
+    .footer-bottom {
+        font-size: 0.8em;
+    }
+    .footer-bottom .footer-links a {
+        margin: 0 5px;
+    }
 }

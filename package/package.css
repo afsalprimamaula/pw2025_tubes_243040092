@@ -1,0 +1,478 @@
+/* General Styling */
+:root {
+    --primary-color: #4CAF50; /* Hijau utama */
+    --accent-color: #DDF6D2; /* Hijau lebih terang */
+    --text-color: #333; /* Warna teks utama untuk konten */
+    --light-gray: #f4f4f4;
+    --dark-gray: #555;
+    --white: #fff;
+    --black: #000;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* Ganti dengan 'Poppins' jika Anda ingin Google Font */
+    margin: 0;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--white);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    color: var(--text-color);
+    line-height: 1.2;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Untuk menghindari spasi bawah pada gambar di dalam flex/grid */
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+.section-title {
+    font-size: 2.8em;
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: var(--text-color); /* Pastikan warna konsisten */
+}
+
+.section-subtitle {
+    font-size: 1.1em;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--dark-gray);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Header and Navbar */
+.hero-section {
+    height: 650px; /* Tinggi hero section dengan video */
+    position: relative; /* Penting untuk penempatan video, overlay, dan navbar */
+    overflow: hidden; /* Pastikan video tidak meluap */
+    display: flex; /* Untuk tata letak vertikal konten (navbar, hero-content) */
+    flex-direction: column;
+    justify-content: space-between; /* Menjaga navbar di atas dan hero-content di tengah/bawah */
+    color: var(--white); /* Pastikan teks default di hero berwarna putih agar kontras */
+}
+
+
+/* Header and Navbar */
+.hero-section {
+    height: 650px; /* Tinggi hero section dengan video */
+    position: relative; /* Penting untuk penempatan video, overlay, dan navbar */
+    overflow: hidden; /* Pastikan video tidak meluap */
+    display: flex; /* Untuk tata letak vertikal konten (navbar, hero-content) */
+    flex-direction: column;
+    justify-content: space-between; /* Menjaga navbar di atas dan hero-content di tengah/bawah */
+    color: var(--white); /* Pastikan teks default di hero berwarna putih agar kontras */
+}
+
+/* Style untuk Video Latar Belakang Hero (Video Apel) */
+.hero-video-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -2; /* Posisikan di paling belakang (di bawah overlay dan navbar) */
+    transform: translate(-50%, -50%);
+    object-fit: cover; /* Pastikan video menutupi seluruh area tanpa distorsi */
+    filter: brightness(0.9); /* Ditingkatkan menjadi 0.9 (lebih terang) */
+}
+
+/* Style untuk Overlay Video (untuk kontras teks) */
+.hero-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0); /* Opasitas diturunkan menjadi 0.3 (lebih transparan) */
+    z-index: -1; /* Di atas video, di bawah navbar */
+}
+
+/* Navbar (tetap transparan dan menimpa video) */
+.navbar {
+    position: relative; /* Ini agar z-index bekerja relatif terhadap parent flex container */
+    z-index: 1001; /* Pastikan navbar berada di atas video dan overlay */
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0); /* Navbar sangat transsparan di atas video */
+    padding: 15px 0;
+    box-shadow: none; /* Hapus shadow jika tidak diperlukan di atas video */
+    backdrop-filter: blur(1px); /* Memberi sedikit efek blur pada latar belakang navbar */
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-icon {
+    font-size: 1.6em;
+    color: var(--white); /* Warna ikon menjadi putih */
+}
+
+.navbar .logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--white); /* Warna logo menjadi putih */
+}
+
+.navbar .nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 35px;
+}
+
+.navbar .nav-links li {
+    margin: 0;
+}
+
+.navbar .nav-links a {
+    text-decoration: none;
+    color: var(--white); /* Warna link navigasi menjadi putih */
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 5px 0;
+}
+
+.navbar .nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box input {
+    padding: 8px 10px 8px 35px;
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Border putih transparan */
+    border-radius: 20px;
+    outline: none;
+    font-size: 0.9em;
+    color: var(--white); /* Warna teks input menjadi putih */
+    width: 150px;
+    background-color: rgba(255, 255, 255, 0.2); /* Input lebih transparan */
+    transition: all 0.3s ease;
+}
+
+.search-box input::placeholder {
+    color: rgba(255, 255, 255, 0.7); /* Warna placeholder menjadi putih transparan */
+}
+
+.search-box input:focus {
+    width: 200px;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(var(--primary-color), 0.5);
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    color: var(--white); /* Warna ikon menjadi putih */
+    font-size: 0.9em;
+}
+
+.login-button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: var(--accent-color);
+}
+
+/* Hero Content (untuk teks/slogan atau elemen lain di atas video) */
+.hero-content {
+    position: relative; /* Penting agar z-index bekerja */
+    z-index: 1; /* Di atas overlay video, di bawah navbar */
+    flex-grow: 1; /* Biarkan mengisi sisa ruang */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Posisikan di tengah vertikal */
+    align-items: center; /* Posisikan di tengah horizontal */
+    text-align: center;
+    padding: 20px; /* Padding agar konten tidak menempel tepi */
+}
+
+
+
+/* Footer */
+.footer {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 60px 0 30px;
+    font-size: 0.95em;
+}
+
+.footer .footer-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-col h4 {
+    color: var(--white);
+    font-size: 1.4em;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.footer-col p {
+    font-size: 0.8em;
+    line-height: 1;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.footer-col-contact p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-col-contact p i {
+    color: var(--primary-color);
+    font-size: 1.1em;
+}
+
+
+.footer-col .social-icons {
+    margin-top: 20px;
+}
+
+.footer-col .social-icons a {
+    color: var(--white);
+    font-size: 1.5em;
+    margin-right: 18px;
+    transition: color 0.3s ease;
+}
+
+.footer-col .social-icons a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #333;
+    padding-top: 30px;
+    font-size: 0.85em;
+    color: #aaa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-bottom .footer-links a {
+    color: #aaa;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom .footer-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Package Section */
+.package-section {
+    padding: 80px 0;
+    background-color: var(--light-gray);
+}
+
+.category-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.filter-button {
+    background-color: var(--white);
+    color: var(--text-color);
+    border: 1px solid var(--primary-color);
+    padding: 10px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.filter-button:hover,
+.filter-button.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.package-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.package-card {
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.package-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.package-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.package-content {
+    padding: 25px;
+    flex-grow: 1; /* Allows content to push footer down */
+    display: flex;
+    flex-direction: column;
+}
+
+.package-title {
+    font-size: 1.6em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.package-description {
+    font-size: 0.95em;
+    color: var(--dark-gray);
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1; 
+}
+
+.package-details {
+    margin-top: auto; 
+    padding-top: 15px;
+    border-top: 1px solid var(--light-gray);
+}
+
+.package-price {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+
+
+.package-info {
+    font-size: 0.85em;
+    color: var(--dark-gray);
+}
+
+/* Responsive adjustments for package section */
+@media (max-width: 768px) {
+    .package-section {
+        padding: 50px 0;
+    }
+
+    .section-title {
+        font-size: 2.2em;
+    }
+
+    .section-subtitle {
+        font-size: 1em;
+        margin-bottom: 30px;
+    }
+
+    .category-filters {
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+    .filter-button {
+        padding: 8px 20px;
+        font-size: 0.9em;
+    }
+
+    .package-grid {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
+
+    .package-content {
+        padding: 20px;
+    }
+
+    .package-title {
+        font-size: 1.4em;
+    }
+
+    .package-description {
+        font-size: 0.9em;
+    }
+
+    .package-price {
+        font-size: 1.3em;
+    }
+}

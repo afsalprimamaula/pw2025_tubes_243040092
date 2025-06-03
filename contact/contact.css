@@ -1,0 +1,506 @@
+/* General Styling */
+:root {
+    --primary-color: #4CAF50; /* Hijau utama */
+    --accent-color: #DDF6D2; /* Hijau lebih terang */
+    --text-color: #333; /* Warna teks utama untuk konten */
+    --light-gray: #f4f4f4;
+    --dark-gray: #555;
+    --white: #fff;
+    --black: #000;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* Ganti dengan 'Poppins' jika Anda ingin Google Font */
+    margin: 0;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--white);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    color: var(--text-color);
+    line-height: 1.2;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Untuk menghindari spasi bawah pada gambar di dalam flex/grid */
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+.section-title {
+    font-size: 2.8em;
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: var(--text-color); /* Pastikan warna konsisten */
+}
+
+.section-subtitle {
+    font-size: 1.1em;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--dark-gray);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Header and Navbar */
+.hero-section {
+    height: 500px; /* Tinggi konten visual hero section, di luar navbar */
+    padding-top: 70px; /* Sesuaikan dengan tinggi navbar Anda (misal: 60px - 80px) */
+                       /* Ini memberi ruang agar konten hero-section tidak tertutup navbar fixed */
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    color: var(--white); /* Default text color for hero section, will be overridden by info-reservasi-box */
+}
+
+/* Style untuk Gambar Latar Belakang Hero */
+.hero-image-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* Style untuk Overlay (untuk kontras teks di atas gambar) */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* MODIFIED: Overlay lebih gelap */
+    z-index: -1;
+}
+
+/* Navbar (Dibuat Fixed) */
+.navbar {
+    position: fixed; /* Membuat navbar menempel di atas layar */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1001; /* Pastikan di atas elemen lain */
+    background-color: rgba(0, 0, 0, 0.1); /* Latar transparan gelap agar backdrop-filter efektif */
+    padding: 15px 0;
+    box-shadow: none;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-icon {
+    font-size: 1.6em;
+    color: var(--white);
+}
+
+.navbar .logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.navbar .nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 35px;
+}
+
+.navbar .nav-links li {
+    margin: 0;
+}
+
+.navbar .nav-links a {
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 5px 0;
+}
+
+.navbar .nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box input {
+    padding: 8px 10px 8px 35px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    outline: none;
+    font-size: 0.9em;
+    color: var(--white);
+    width: 150px;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.search-box input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-box input:focus {
+    width: 200px;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(var(--primary-color), 0.5);
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    color: var(--white);
+    font-size: 0.9em;
+}
+
+.login-button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: var(--accent-color);
+    /* contoh: background-color: #3e8e41; */
+}
+
+
+
+
+.contact-hero-text h1 {
+    font-size: 3em; /* Ukuran lebih besar untuk "Hubungi Kami" */
+    color: var(--white);
+    margin-top: 40px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.contact-hero-text .subtitle {
+    font-size: 1.2em;
+    color: var(--accent-color); /* Hijau terang untuk subtitle */
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.contact-hero-text p:not(.subtitle) {
+    font-size: 1em;
+    color: var(--light-gray);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* Contact Main Section */
+.contact-main-section {
+    padding: 60px 0;
+    background-color: var(--light-gray); /* Latar belakang abu-abu muda untuk section */
+}
+
+.contact-columns-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center; /* Agar kolom berada di tengah jika ada sisa ruang */
+}
+
+.contact-info-col,
+.contact-form-col {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    flex: 1; /* Agar kolom bisa membesar */
+}
+
+.contact-info-col {
+    min-width: 300px; /* Lebar minimum kolom info */
+    max-width: 450px; /* Lebar maksimum kolom info */
+}
+
+.contact-form-col {
+    min-width: 300px; /* Lebar minimum kolom form */
+    max-width: 600px; /* Lebar maksimum kolom form */
+}
+
+.contact-info-col h3,
+.contact-form-col h3 {
+    font-size: 1.8em;
+    color: var(--text-color);
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.contact-info-item {
+    display: flex;
+    align-items: flex-start; /* Icon di atas jika teks panjang */
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.contact-info-item i {
+    font-size: 1.5em;
+    color: var(--primary-color);
+    margin-top: 5px; /* Sedikit ke bawah agar align dengan teks */
+    width: 30px; /* Lebar tetap untuk ikon */
+    text-align: center;
+}
+
+.contact-info-item h4 {
+    font-size: 1.1em;
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+.contact-info-item p {
+    font-size: 0.95em;
+    color: var(--dark-gray);
+    line-height: 1.5;
+    margin-bottom: 3px; /* Mengurangi margin bawaan paragraf */
+}
+
+.contact-social-icons {
+    margin-top: 25px;
+    text-align: left; /* Sesuai gambar, ikon di kiri */
+}
+
+.contact-social-icons a {
+    color: var(--primary-color);
+    font-size: 1.6em;
+    margin-right: 20px;
+    transition: color 0.3s ease;
+}
+
+.contact-social-icons a:last-child {
+    margin-right: 0;
+}
+
+.contact-social-icons a:hover {
+    color: var(--text-color);
+}
+
+/* Contact Form Styles */
+.contact-form .form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    display: block;
+    font-size: 0.9em;
+    color: var(--dark-gray);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.95em;
+    color: var(--text-color);
+    box-sizing: border-box;
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+.contact-form textarea {
+    resize: vertical; /* Izinkan resize vertikal saja */
+    min-height: 120px;
+}
+
+.btn-kirim-pesan {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px; /* Sesuai gambar */
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-kirim-pesan i {
+    margin-right: 8px;
+}
+
+.btn-kirim-pesan:hover {
+    background-color: #3e8e41; /* Warna hijau lebih gelap */
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments for Contact Page */
+@media (max-width: 992px) {
+    .contact-info-col,
+    .contact-form-col {
+        max-width: 100%; /* Kolom mengambil lebar penuh di tablet */
+        flex-basis: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-hero-text h1 {
+        font-size: 2.5em;
+    }
+    .contact-hero-text .subtitle {
+        font-size: 1em;
+    }
+    .contact-hero-text p:not(.subtitle) {
+        font-size: 0.9em;
+    }
+
+    .contact-info-col h3,
+    .contact-form-col h3 {
+        font-size: 1.6em;
+    }
+}
+
+/* Footer */
+.footer {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 60px 0 30px;
+    font-size: 0.95em;
+}
+
+.footer .footer-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-col h4 {
+    color: var(--white);
+    font-size: 1.4em;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.footer-col p {
+    font-size: 0.8em;
+    line-height: 1;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.footer-col-contact p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-col-contact p i {
+    color: var(--primary-color);
+    font-size: 1.1em;
+}
+
+.footer-col .social-icons {
+    margin-top: 20px;
+}
+
+.footer-col .social-icons a {
+    color: var(--white);
+    font-size: 1.5em;
+    margin-right: 18px;
+    transition: color 0.3s ease;
+}
+
+.footer-col .social-icons a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #333;
+    padding-top: 30px;
+    font-size: 0.85em;
+    color: #aaa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-bottom .footer-links a {
+    color: #aaa;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom .footer-links a:hover {
+    color: var(--primary-color);
+}
