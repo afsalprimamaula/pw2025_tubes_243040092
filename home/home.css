@@ -9,6 +9,10 @@
     --black: #000;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -80,6 +84,7 @@ a:hover {
     flex-direction: column;
     justify-content: space-between; /* Menjaga navbar di atas dan hero-content di tengah/bawah */
     color: var(--white); /* Pastikan teks default di hero berwarna putih agar kontras */
+    padding-top: 70px; /* Memberi ruang untuk navbar fixed */
 }
 
 /* Style untuk Video Latar Belakang Hero (Video Apel) */
@@ -108,16 +113,19 @@ a:hover {
     z-index: -1; /* Di atas video, di bawah navbar */
 }
 
-/* Navbar (tetap transparan dan menimpa video) */
+/* Navbar (Dibuat Fixed) */
 .navbar {
-    position: relative; /* Ini agar z-index bekerja relatif terhadap parent flex container */
-    z-index: 1001; /* Pastikan navbar berada di atas video dan overlay */
+    position: fixed; /* Membuat navbar menempel di atas layar */
+    top: 0;
+    left: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0); /* Navbar sangat transsparan di atas video */
+    z-index: 1001; /* Pastikan di atas elemen lain */
+    background-color: rgba(0, 0, 0, 0.1); /* Latar transparan gelap agar backdrop-filter efektif */
     padding: 15px 0;
-    box-shadow: none; /* Hapus shadow jika tidak diperlukan di atas video */
-    backdrop-filter: blur(1px); /* Memberi sedikit efek blur pada latar belakang navbar */
+    box-shadow: none;
+    backdrop-filter: blur(5px);
 }
+
 
 .navbar-container {
     display: flex;
@@ -281,6 +289,21 @@ a:hover {
     font-size: 0.98em;
     color: var(--dark-gray);
 }
+
+/* Perbaikan untuk link card */
+a.card {
+    text-decoration: none;
+}
+a.card:hover {
+    text-decoration: none;
+}
+a.card h3 {
+    color: var(--primary-color);
+}
+a.card p {
+    color: var(--dark-gray);
+}
+
 
 /* Spotlight Section */
 .spotlight-section {

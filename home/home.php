@@ -52,26 +52,26 @@
                 <h2 class="section-title">Pengalaman Liburan Yang Istimewa</h2>
                 <p class="section-subtitle">Nikmati keindahan alam dan budaya lokal dalam suasana tenang dan alami di wisata Muara Jambu</p>
                 <div class="cards-grid">
-                    <div class="card">
+                    <a href="../package/package.php#package" class="card">
                         <i class="fa-solid fa-campground card-icon"></i>
                         <h3>Camping Nyaman</h3>
                         <p>Deskripsi singkat tentang fasilitas camping yang nyaman di Muara Jambu.</p>
-                    </div>
-                    <div class="card">
+                    </a>
+                    <a href="../package/package.php#activity" class="card">
                         <i class="fa-solid fa-person-hiking card-icon"></i>
                         <h3>Aktivitas Seru</h3>
                         <p>Jelajahi jalur tracking yang menantang dengan pemandangan alam yang memukau.</p>
-                    </div>
-                    <div class="card">
+                    </a>
+                    <a href="#map-section" class="card">
                         <i class="fa-solid fa-location-dot card-icon"></i>
                         <h3>Lokasi Strategis</h3>
                         <p>Berada di lokasi yang mudah diakses dan dekat dengan berbagai destinasi menarik.</p>
-                    </div>
-                    <div class="card">
+                    </a>
+                    <a href="../reservasi/reservasi.php" class="card">
                         <i class="fa-solid fa-calendar-check card-icon"></i>
                         <h3>Reservasi Mudah</h3>
                         <p>Proses reservasi yang cepat dan mudah untuk kenyamanan liburan Anda.</p>
-                    </div>
+                    </a>
                 </div>
             </div>
         </section>
@@ -94,6 +94,7 @@
                 <div class="spotlight-carousel-container">
                     <div class="spotlight-carousel" id="spotlightCarousel">
                         <div class="spotlight-card">
+                            <a href="../package/package.php">
                             <div class="spotlight-image-wrapper">
                                 <img src="img/camping.jpg" alt="Camping" class="spotlight-image">
                                 <div class="image-overlay-icon">
@@ -102,9 +103,12 @@
                             <div class="spotlight-card-content">
                                 <h4>Camping</h4>
                                 <p>Rasakan serunya berkemah di bawah langit berbintang dengan suasana hutan yang asri dan udara yang sejuk. Camping di Muara Jambu cocok untuk keluarga, komunitas, dan pecinta alam.</p>
+                                </a>
                             </div>
                         </div>
+
                         <div class="spotlight-card">
+                            <a href="../package/package.php#filter-group">
                             <div class="spotlight-image-wrapper">
                                 <img src="img/pondokan.png" alt="Pondokan" class="spotlight-image">
                                 <div class="image-overlay-icon">
@@ -114,9 +118,12 @@
                             <div class="spotlight-card-content">
                                 <h4>Pondokan</h4>
                                 <p>Nikmati kenyamanan pondok berkonsep modern yang menyatu dengan alam. Cocok untuk Anda yang mencari ketenangan dan privasi.</p>
+                                </a>
                             </div>
                         </div>
+
                         <div class="spotlight-card">
+                            <a href="../package/package.php#activity" class="card">
                             <div class="spotlight-image-wrapper">
                                 <img src="img/aktivitas.png" alt="Aktivitas" class="spotlight-image">
                                 <div class="image-overlay-icon">
@@ -127,8 +134,10 @@
                                 <h4>Aktivitas Seru</h4>
                                 <p>Berbagai pilihan aktivitas seru seperti arung jeram atau berperahu di danau yang jernih, dan juga area bermain anak.</p>
                             </div>
+                            </a>
                         </div>
                         <div class="spotlight-card">
+                            <a href="../galeri/galeri.php">
                             <div class="spotlight-image-wrapper">
                                 <img src="img/kolam.webp" alt="Lainnya 1" class="spotlight-image">
                                 <div class="image-overlay-icon">
@@ -139,8 +148,10 @@
                                 <h4>Kolam Renang</h4>
                                 <p>Nikmati kemewahan kolam renang dengan pemandangan alam yang memukau.</p>
                             </div>
+                            </a>
                         </div>
                         <div class="spotlight-card">
+                            <a href="../galeri/galeri.php">
                             <div class="spotlight-image-wrapper">
                                 <img src="img/spot.jpg" alt="Lainnya 1" class="spotlight-image">
                                 <div class="image-overlay-icon">
@@ -151,6 +162,7 @@
                                 <h4>Spot Lainnya</h4>
                                 <p>Jelajahi berbagai spot menarik lainnya yang tersebar di area Muara Jambu.</p>
                             </div>
+                            </a>
                         </div>
 
                     </div>
@@ -186,7 +198,7 @@
             </div>
         </section>
 
-        <section class="map-section">
+        <section id="map-section" class="map-section">
             <div class="container">
                 <div class="map-box">
                     <p class="subtitle-map">DISCOVER TOP DESTINATIONS AND ATTRACTIONS</p>

@@ -372,5 +372,142 @@
             });
         });
     </script>
+    
+    <script>
+    // JavaScript untuk fungsionalitas filter
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterButtons = document.querySelectorAll('.filter-button');
+        const packageCards = document.querySelectorAll('.package-card');
+
+        // Fungsi untuk menyembunyikan semua kartu
+        function hideAllCards() {
+            packageCards.forEach(card => {
+                card.style.display = 'none';
+            });
+        }
+
+        // Fungsi untuk menampilkan kartu berdasarkan kategori
+        function showCardsByCategory(categoryClass) {
+            packageCards.forEach(card => {
+                if (card.classList.contains(categoryClass)) {
+                    card.style.display = 'flex';
+                }
+            });
+        }
+
+        // Inisialisasi: Tampilkan hanya kartu "Camping Family" saat halaman pertama kali dimuat
+        hideAllCards();
+        showCardsByCategory('camping-family-card');
+
+        // --- TAMBAHKAN BLOK KODE BARU DI SINI ---
+        // Cek jika ada hash di URL (misal: #activity) dan picu klik otomatis
+        const hash = window.location.hash.substring(1); // Mengambil kata 'activity' dari '#activity'
+        if (hash) {
+            const buttonToClick = document.getElementById('filter-' + hash); // Mencari tombol dengan id 'filter-activity'
+            if (buttonToClick) {
+                buttonToClick.click(); // Memicu klik pada tombol yang sesuai
+            }
+        }
+        // --- BATAS AKHIR BLOK KODE BARU ---
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Hapus kelas 'active' dari semua tombol
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Tambahkan kelas 'active' ke tombol yang diklik
+                this.classList.add('active');
+
+                // Tentukan kategori yang akan ditampilkan berdasarkan ID tombol
+                let categoryToShow = '';
+                if (this.id === 'filter-family') {
+                    categoryToShow = 'camping-family-card';
+                } else if (this.id === 'filter-dome') {
+                    categoryToShow = 'camping-dome-card';
+                } else if (this.id === 'filter-group') {
+                    categoryToShow = 'camping-group-card';
+                } else if (this.id === 'filter-activity') {
+                    categoryToShow = 'outdoor-activity-card';
+                }
+
+                // Sembunyikan semua kartu terlebih dahulu
+                hideAllCards();
+                // Tampilkan kartu dari kategori yang dipilih
+                showCardsByCategory(categoryToShow);
+            });
+        });
+    });
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterButtons = document.querySelectorAll('.filter-button');
+        const packageCards = document.querySelectorAll('.package-card');
+
+        // Fungsi untuk menyembunyikan semua kartu
+        function hideAllCards() {
+            packageCards.forEach(card => {
+                card.style.display = 'none';
+            });
+        }
+
+        // Fungsi untuk menampilkan kartu berdasarkan kategori
+        function showCardsByCategory(categoryClass) {
+            packageCards.forEach(card => {
+                if (card.classList.contains(categoryClass)) {
+                    card.style.display = 'flex';
+                }
+            });
+        }
+
+        // Event listener untuk setiap tombol filter
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Hapus kelas 'active' dari semua tombol
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Tambahkan kelas 'active' ke tombol yang diklik
+                this.classList.add('active');
+
+                // Tentukan kategori yang akan ditampilkan berdasarkan ID tombol
+                let categoryToShow = '';
+                if (this.id === 'filter-family') {
+                    categoryToShow = 'camping-family-card';
+                } else if (this.id === 'filter-dome') {
+                    categoryToShow = 'camping-dome-card';
+                } else if (this.id === 'filter-group') {
+                    categoryToShow = 'camping-group-card';
+                } else if (this.id === 'filter-activity') {
+                    categoryToShow = 'outdoor-activity-card';
+                }
+
+                // Sembunyikan semua kartu terlebih dahulu
+                hideAllCards();
+                // Tampilkan kartu dari kategori yang dipilih
+                showCardsByCategory(categoryToShow);
+            });
+        });
+
+        // --- BAGIAN YANG DIPERBAIKI ---
+        // Cek jika ada hash di URL (misal: #filter-group) dan picu klik otomatis
+        const hash = window.location.hash.substring(1); // Mengambil 'filter-group' dari '#filter-group'
+        if (hash) {
+            // Langsung cari tombol dengan ID yang sama dengan hash
+            const buttonToClick = document.getElementById(hash); 
+            if (buttonToClick) {
+                buttonToClick.click(); // Memicu klik pada tombol yang sesuai
+            } else {
+                // Jika tidak ada hash atau hash tidak cocok, tampilkan default
+                hideAllCards();
+                showCardsByCategory('camping-family-card');
+                document.getElementById('filter-family').classList.add('active');
+            }
+        } else {
+            // Tampilan default jika tidak ada hash sama sekali
+            hideAllCards();
+            showCardsByCategory('camping-family-card');
+            document.getElementById('filter-family').classList.add('active');
+        }
+    });
+</script>
+
 </body>
 </html>

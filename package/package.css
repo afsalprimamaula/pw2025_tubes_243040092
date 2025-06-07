@@ -13,6 +13,11 @@
     box-sizing: border-box;
 }
 
+/* Aturan untuk memastikan link pada spotlight card tidak mengubah tampilan */
+.spotlight-link, .spotlight-link:hover {
+    text-decoration: none;
+}
+
 body {
     font-family: 'Arial', sans-serif; /* Ganti dengan 'Poppins' jika Anda ingin Google Font */
     margin: 0;

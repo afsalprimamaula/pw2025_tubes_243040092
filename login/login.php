@@ -82,10 +82,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <button type="submit" class="btn btn-login">Login</button>
                 </form>
+                <a  href="../registrasi/registrasi.php" class="login-link">Don't have an account? Register here</a>
             </div>
         </div>
     </div>
-    <a class="login-link" href="../registrasi/registrasi.php">Don't have an account? Register here</a>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

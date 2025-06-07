@@ -104,6 +104,14 @@ body, html {
     color: white;
 }
 
+.login-link {
+    margin-top: 15px;
+    font-size: 1em;
+    display: block;
+    color: #28a745;
+    text-decoration: none;
+}
+
 /* Media Queries untuk Responsivitas */
 /* Tampilkan image-section pada layar medium (tablet) ke atas */
 @media (min-width: 768px) {
