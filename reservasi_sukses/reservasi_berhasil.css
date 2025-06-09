@@ -1,0 +1,127 @@
+body {
+    background-color: #F8F5F0; /* Warna latar belakang krem lembut */
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.success-container {
+    max-width: 650px;
+    width: 100%;
+}
+
+.success-card {
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.07);
+    text-align: center;
+}
+
+.success-icon {
+    font-size: 4rem;
+    color: #28a745; /* Warna hijau sukses */
+    margin-bottom: 20px;
+}
+
+.success-title {
+    font-weight: 800;
+    font-size: 2rem;
+    color: #5C4B42; /* Coklat tua */
+    margin-bottom: 15px;
+}
+
+.success-message {
+    color: #7a7a7a;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.info-box {
+    background-color: #FFF7E6; /* Krem kekuningan */
+    border: 1px solid #FFE6B3;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.info-box-title {
+    font-weight: 700;
+    color: #5C4B42;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.info-box ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.info-box ul li {
+    color: #7a7a7a;
+    font-size: 0.95rem;
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.info-box ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #D98218; /* Oranye */
+    font-weight: bold;
+}
+
+.profile-link-message {
+    color: #7a7a7a;
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-primary-custom, .btn-secondary-custom {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary-custom {
+    background-color: #8A6D5D; /* Coklat sesuai gambar */
+    color: white;
+    border: 1px solid #8A6D5D;
+}
+
+.btn-primary-custom:hover {
+    background-color: #715b4d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-secondary-custom {
+    background-color: #FFFFFF;
+    color: #8A6D5D;
+    border: 1px solid #D9C8B9;
+}
+
+.btn-secondary-custom:hover {
+    background-color: #F8F5F0;
+    border-color: #8A6D5D;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}

@@ -4,6 +4,7 @@ require_once '../config/koneksi.php';
 
 $errorMessage = '';
 
+// Perbaikan 1: Kondisi diubah untuk hanya memeriksa metode POST, karena tombol submit tidak punya atribut 'name'.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $email = trim($_POST['email']);
@@ -11,8 +12,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($email) || empty($password)) {
         $errorMessage = "Email dan Password tidak boleh kosong!";
+        // Opsi: redirect kembali ke halaman login dengan pesan error
+        // header('Location: ../login/login.php?error=' . urlencode($errorMessage));
+        // exit();
     } else {
-        $sql = "SELECT id, nama, email, password, role FROM users WHERE email = ?";
+        $sql = "SELECT id, username, email, password, role FROM users WHERE email = ?";
         $stmt = $conn->prepare($sql);
 
         if ($stmt) {
@@ -26,12 +30,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (password_verify($password, $user['password'])) {
                     // Login berhasil!
                     $_SESSION['user_id'] = $user['id'];
-                    // PENTING: Pastikan Anda menggunakan $user['nama'] di sini
-                    $_SESSION['user_nama'] = $user['nama']; 
+                    // Perbaikan 2: Menggunakan kolom 'nama' sesuai query, bukan 'username'.
+                    $_SESSION['user_nama'] = $user['username'];
                     $_SESSION['user_email'] = $user['email'];
                     $_SESSION['user_role'] = $user['role'];
+                    // Perbaikan 3: Menamakan session 'loggedin' agar konsisten dengan pengecekan di home.php
                     $_SESSION['loggedin'] = true;
 
+                    // Arahkan semua role ke home.php setelah login berhasil
                     header("Location: ../home/home.php");
                     exit();
 
@@ -47,7 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     
+    // Jika login gagal, arahkan kembali ke halaman login dengan pesan error
     if (!empty($errorMessage)) {
+        // Anda bisa meneruskan pesan error melalui session atau query string
         $_SESSION['login_error'] = $errorMessage;
         header('Location: ../login/login.php');
         exit();

@@ -1,10 +1,17 @@
+<?php 
+session_start();
+require_once '../config/koneksi.php'; // Sesuaikan path jika perlu
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hubungi Kami - Muara Jambu</title>
-    <link rel="stylesheet" href="contact.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="contact.css"> 
+    <link rel="stylesheet" href="../aset/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
@@ -32,8 +39,23 @@
                         <input type="text" placeholder="search">
                         <i class="fa-solid fa-magnifying-glass search-icon"></i>
                     </div>
-                    <button class="login-button">Login</button>
-                    <i class="fa-solid fa-user-circle profile-icon"></i>
+
+                    <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+                        <div class="profile-dropdown">
+                            <i class="fa-solid fa-user-circle profile-icon"></i>
+                            <div class="dropdown-content">
+                                <div class="dropdown-header">
+                                    <span><?php echo htmlspecialchars($_SESSION['user_nama']); ?></span>
+                                </div>
+                                <a href="../profile/profile.php"><i class="fa-solid fa-user"></i> Lihat Profile Saya</a>
+                                <a href="#"><i class="fa-solid fa-calendar-check"></i> Reservasi Saya</a>
+                                <a href="#"><i class="fa-solid fa-key"></i> Ubah Password</a>
+                                <a href="../controller/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
+                            </div>
+                        </div>
+                    <?php else: ?>
+                        <a href="../login/login.php" class="login-button-link"><button class="login-button">Login</button></a>
+                    <?php endif; ?>
                 </div>
             </div>
         </nav>
@@ -76,9 +98,9 @@
                         </div>
                     </div>
                     <div class="contact-social-icons">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.facebook.com/share/15NoiWdnWW/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/muarajambuofficial?igsh=OWViNmI2aHgwdmZ6" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@muarajambuofficial?_t=ZS-8x0DAZWVz1x&_r=1" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
 

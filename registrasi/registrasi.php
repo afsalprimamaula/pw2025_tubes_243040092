@@ -21,9 +21,9 @@ require_once '../controller/proses_registrasi.php'; // Jika controller di subfol
             <img src="img/logo mj.png" alt="Muara Jambu Logo" class="logo"> <div class="login-form">
                 <h2><?php echo htmlspecialchars($formLegend); ?></h2>
                 <div class="social-icons">
-                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.facebook.com/share/15NoiWdnWW/" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/muarajambuofficial?igsh=OWViNmI2aHgwdmZ6" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@muarajambuofficial?_t=ZS-8x0DAZWVz1x&_r=1" title="TikTok"><i class="fab fa-tiktok"></i></a>
                 </div>
 
                 <?php

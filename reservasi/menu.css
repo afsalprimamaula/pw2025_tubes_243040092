@@ -1,0 +1,67 @@
+body {
+    background-color: #F8F5F0; /* Warna latar belakang halaman */
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px 0; /* Menambahkan padding agar tidak menempel saat di-scroll di mobile */
+}
+
+.reservation-container {
+    max-width: 550px;
+    width: 100%;
+}
+
+.reservation-card {
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: none;
+}
+
+.reservation-card h2 {
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #5C4B42;
+}
+
+.form-label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #5C4B42;
+}
+
+.form-control, .form-select {
+    height: 70px;
+    border-radius: 8px;
+    border: 1px solid #E0D9D4;
+}
+.form-control:focus, .form-select:focus {
+    border-color: #A89689;
+    box-shadow: 0 0 0 0.25rem rgba(168, 150, 137, 0.25);
+}
+
+.alert-custom {
+    background-color: #FFF7E6;
+    border-color: #FFE6B3;
+    color: #D98218;
+    border-radius: 8px;
+}
+
+.btn-submit {
+    background-color: #8A9CA8;
+    color: white;
+    font-weight: 700;
+    padding: 12px;
+    border-radius: 8px;
+    width: 100%;
+    border: none;
+}
+
+.btn-submit:hover {
+    background-color: #71828f;
+    color: white;
+}

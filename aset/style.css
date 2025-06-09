@@ -1,0 +1,280 @@
+/* General Styling */
+:root {
+    --primary-color: #4CAF50;
+    --accent-color: #DDF6D2;
+    --text-color: #333;
+    --light-gray: #f4f4f4;
+    --dark-gray: #555;
+    --white: #fff;
+    --black: #000;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--white);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+/* Navbar (Dibuat Fixed) */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1001;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 15px 0;
+    box-shadow: none;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.navbar .nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 35px;
+}
+
+.navbar .nav-links a {
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 5px 0;
+}
+
+.navbar .nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box input {
+    padding: 8px 10px 8px 35px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    outline: none;
+    font-size: 0.9em;
+    color: var(--white);
+    width: 150px;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.search-box input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    color: var(--white);
+    font-size: 0.9em;
+}
+
+.login-button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.login-button-link {
+    text-decoration: none;
+}
+
+/* === Dropdown Profile Styling (PERBAIKAN) === */
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+    /* TAMBAHKAN INI: Memberi ruang tak terlihat di bawah ikon agar hover tidak putus */
+
+}
+
+.profile-icon {
+    font-size: 1.8em;
+    color: var(--white);
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #f9f9f9;
+    min-width: 220px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1002;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.profile-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: var(--dark-gray);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 0.95em;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-content a i {
+    color: var(--dark-gray);
+    margin-right: 12px;
+    width: 20px;
+    text-align: center;
+    transition: color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+}
+
+.dropdown-content a:hover i {
+    color: var(--primary-color);
+}
+
+.dropdown-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #f1f1f1;
+}
+
+.dropdown-header span {
+    font-weight: 700;
+    color: var(--text-color);
+    font-size: 1em;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 60px 0 30px;
+    font-size: 0.95em;
+}
+
+.footer .footer-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-col h4 {
+    color: var(--white);
+    font-size: 1.4em;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.footer-col p {
+    font-size: 0.8em;
+    line-height: 1;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.footer-col-contact p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-col-contact p i {
+    color: var(--primary-color);
+    font-size: 1.1em;
+}
+
+
+.footer-col .social-icons {
+    margin-top: 20px;
+}
+
+.footer-col .social-icons a {
+    color: var(--white);
+    font-size: 1.5em;
+    margin-right: 18px;
+    transition: color 0.3s ease;
+}
+
+.footer-col .social-icons a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #333;
+    padding-top: 30px;
+    font-size: 0.85em;
+    color: #aaa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-bottom .footer-links a {
+    color: #aaa;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom .footer-links a:hover {
+    color: var(--primary-color);
+}

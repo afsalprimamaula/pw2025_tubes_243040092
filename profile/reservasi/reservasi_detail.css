@@ -1,0 +1,208 @@
+body {
+    background-color: #F8F5F0;
+    font-family: 'Nunito', sans-serif;
+    color: #5C4B42;
+}
+
+.main-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.back-link-container {
+    margin-bottom: 20px;
+}
+
+.back-link {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.detail-card {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    background-color: #F8F5F0;
+    border-bottom: 1px solid #E0D9D4;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.status-badge.waiting {
+    background-color: #FFF7E6;
+    color: #4CAF50;
+}
+
+.status-badge i {
+    margin-right: 5px;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.main-details {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px dashed #E0D9D4;
+    padding-bottom: 30px;
+}
+
+.qr-code-section {
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.qr-code-section img {
+    border-radius: 8px;
+    border: 1px solid #E0D9D4;
+}
+
+.qr-code-section p {
+    font-size: 0.8rem;
+    color: #7a7a7a;
+    max-width: 150px;
+    margin-top: 10px;
+}
+
+.reservation-info {
+    flex-grow: 1;
+}
+
+.reservation-info h4 {
+    font-weight: 800;
+    font-size: 1.4rem;
+    margin-bottom: 2px;
+}
+
+.item-id {
+    font-size: 0.9rem;
+    color: #7a7a7a;
+    margin-bottom: 20px;
+}
+
+.info-section {
+    margin-bottom: 15px;
+}
+
+.info-section h5 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #4CAF50;
+    margin-bottom: 8px;
+}
+
+.info-section p {
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+
+.payment-details {
+    margin-bottom: 30px;
+}
+
+.payment-details h5 {
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.payment-details .table {
+    border: 1px solid #E0D9D4;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.payment-details .table td {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top: 1px solid #E0D9D4;
+}
+.payment-details .table tbody tr:first-child td {
+    border-top: none;
+}
+.payment-details .table tfoot td {
+    font-size: 1.1rem;
+    color: #5C4B42;
+}
+
+.payment-method {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    text-align: right;
+    color: #7a7a7a;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.btn-danger-custom, .btn-secondary-custom {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.btn-danger-custom {
+    background-color: #fce8e6;
+    color: #c93524;
+    border-color: #f7c5c0;
+}
+.btn-danger-custom:hover {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-secondary-custom {
+    background-color: #e9ecef;
+    color: #495057;
+    border-color: #dee2e6;
+}
+.btn-secondary-custom:hover {
+    background-color: #adb5bd;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .main-details {
+        flex-direction: column;
+        align-items: center;
+    }
+    .action-buttons {
+        flex-direction: column;
+    }
+    .btn-danger-custom, .btn-secondary-custom {
+        width: 100%;
+    }
+}
