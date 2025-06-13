@@ -1,55 +1,76 @@
 <?php
 session_start();
+require_once '../config/koneksi.php';
 
-if (!isset($_SESSION['loggedin'])) {
-    exit('Anda harus login untuk melakukan aksi ini.');
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("location: ../login/login.php");
+    exit;
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $user_id = $_SESSION['user_id'];
+    
+    $nama = $_POST['nama'];
+    $email = $_POST['email'];
+    $nomor_hp = $_POST['nomor_hp'] ?? null;
+    $jenis_kelamin = $_POST['jenis_kelamin'] ?? null;
+    $tempat_lahir = $_POST['tempat_lahir'] ?? null;
+    $tanggal_lahir = !empty($_POST['tanggal_lahir']) ? $_POST['tanggal_lahir'] : null;
+    $alamat = $_POST['alamat'] ?? null;
+    $foto_path = $_POST['foto_lama']; 
 
-    // 1. Proses dan perbarui data teks ke dalam Session
-    $_SESSION['user_nama']    = htmlspecialchars($_POST['namaLengkap']);
-    $_SESSION['user_gender']  = htmlspecialchars($_POST['jenisKelamin']);
-    $_SESSION['user_pob']     = htmlspecialchars($_POST['tempatLahir']);
-    $_SESSION['user_dob']     = htmlspecialchars($_POST['tanggalLahir']);
-    $_SESSION['user_phone']   = htmlspecialchars($_POST['nomorHp']);
-    $_SESSION['user_address'] = htmlspecialchars($_POST['alamat']);
-
-    // 2. Proses upload file foto profil
-    // Periksa apakah ada file yang diupload dan tidak ada error
-    if (isset($_FILES['profilePicture']) && $_FILES['profilePicture']['error'] == 0) {
-        $uploadDir = 'uploads/'; // Direktori tempat menyimpan file
-        $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+    if (isset($_FILES['foto_profil']) && $_FILES['foto_profil']['error'] == 0) {
+        $target_dir = "../uploads/avatars/";
         
-        $fileName = basename($_FILES['profilePicture']['name']);
-        $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+        if (!file_exists($target_dir)) {
+            mkdir($target_dir, 0777, true);
+        }
         
-        // Buat nama file yang unik untuk menghindari penimpaan file
-        $newFileName = uniqid() . '.' . $fileExtension;
-        $targetFile = $uploadDir . $newFileName;
+        $file_name = uniqid() . '-' . basename($_FILES["foto_profil"]["name"]);
+        $target_file = $target_dir . $file_name;
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-        // Validasi tipe file
-        if (in_array($fileExtension, $allowedTypes)) {
-            // Coba pindahkan file yang diupload ke direktori tujuan
-            if (move_uploaded_file($_FILES['profilePicture']['tmp_name'], $targetFile)) {
-                // Jika berhasil, simpan path file baru ke session
-                $_SESSION['user_avatar'] = $targetFile;
-            } else {
-                // Handle error jika gagal memindahkan file (opsional)
-                // Contoh: header("Location: edit_profile.php?error=uploadfailed"); exit();
+
+        $allowed_types = ['jpg', 'png', 'jpeg', 'gif'];
+        if (in_array($imageFileType, $allowed_types)) {
+            if (move_uploaded_file($_FILES["foto_profil"]["tmp_name"], $target_file)) {
+
+                if (!empty($foto_path) && $foto_path != 'aset/img/default-avatar.png' && file_exists("../".$foto_path)) {
+                    unlink("../".$foto_path);
+                }
+                $foto_path = "uploads/avatars/" . $file_name; 
             }
-        } else {
-             // Handle error jika tipe file tidak diizinkan (opsional)
-             // Contoh: header("Location: edit_profile.php?error=invalidtype"); exit();
         }
     }
 
-    // 3. Arahkan kembali pengguna ke halaman profil
-    header("Location: profile.php?status=updated");
-    exit;
+    $stmt = $conn->prepare(
+        "UPDATE users SET 
+            nama = ?, 
+            email = ?, 
+            nomor_hp = ?, 
+            jenis_kelamin = ?, 
+            tempat_lahir = ?, 
+            tanggal_lahir = ?, 
+            alamat = ?, 
+            foto_profil = ? 
+        WHERE id = ?"
+    );
 
-} else {
-    header("Location: profile.php");
+    $stmt->bind_param("ssssssssi", $nama, $email, $nomor_hp, $jenis_kelamin, $tempat_lahir, $tanggal_lahir, $alamat, $foto_path, $user_id);
+
+    if ($stmt->execute()) {
+        $_SESSION['user_nama'] = $nama;
+        header("location: profile.php?update=sukses");
+    } 
+    else {
+        header("location: edit_profile.php?error=Gagal memperbarui profil.");
+    }
+    
+    $stmt->close();
+    $conn->close();
+} 
+else {
+    header("location: profile.php");
     exit;
 }
 ?>

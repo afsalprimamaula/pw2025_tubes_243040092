@@ -1,52 +1,51 @@
-/* Styling untuk Hero Section */
 .hero-section {
-    height: 100vh; /* Membuat tinggi hero section 100% dari tinggi layar */
-    position: relative; /* Diperlukan untuk memposisikan elemen anak (video, overlay) */
+    
+    height: 100vh; 
+    position: relative; 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Memastikan tidak ada yang keluar dari batas hero-section */
+    overflow: hidden; 
     color: var(--white);
 }
 
 .hero-video-background {
-    position: absolute; /* Memposisikan video relatif terhadap .hero-section */
+    position: absolute; 
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* KUNCI UTAMA: Memastikan video menutupi seluruh area, menjaga aspek rasio, dan memotong bagian berlebih */
-    z-index: -1; /* Meletakkan video di lapisan paling belakang */
+    object-fit: cover; 
+    z-index: -1; 
 }
-
 .hero-video-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Lapisan gelap agar teks mudah dibaca */
-    z-index: 0; /* Di atas video, tapi di bawah konten lain */
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 0; 
 }
 
 
-/* Hero Content (untuk teks/slogan atau elemen lain di atas video) */
+
 .hero-content {
-    position: relative; /* Penting agar z-index bekerja */
-    z-index: 1; /* Di atas overlay video, di bawah navbar */
-    flex-grow: 1; /* Biarkan mengisi sisa ruang */
+    position: relative; 
+    z-index: 1; 
+    flex-grow: 1; 
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Posisikan di tengah vertikal */
-    align-items: center; /* Posisikan di tengah horizontal */
+    justify-content: center; 
+    align-items: center; 
     text-align: center;
-    padding: 20px; /* Padding agar konten tidak menempel tepi */
+    padding: 20px; 
 }
 
 
 
-/* Experience Section */
+
 .experience-section {
     padding: 80px 0;
     background-color: var(--white);
@@ -54,12 +53,12 @@
 
 .cards-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Memaksa 4 kolom */
+    grid-template-columns: repeat(4, 1fr); 
     gap: 30px;
 }
 
 .card {
-    background-color: var(--accent-color); /* Latar belakang kartu menjadi hijau terang */
+    background-color: var(--accent-color); 
     border-radius: 12px;
     padding: 30px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -67,10 +66,10 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card i.card-icon { /* Styling untuk ikon di dalam kartu pengalaman */
+.card i.card-icon { 
     margin-bottom: 25px;
     font-size: 35px;
-    color: var(--primary-color); /* Warna ikon */
+    color: var(--primary-color); 
     display: block;
 }
 
@@ -91,7 +90,7 @@
     color: var(--dark-gray);
 }
 
-/* Perbaikan untuk link card */
+
 a.card {
     text-decoration: none;
 }
@@ -108,39 +107,39 @@ a.card p {
 
 /* Spotlight Section */
 .spotlight-section {
-    background-color: var(--black); /* Latar belakang hitam sesuai gambar */
-    padding: 80px 0 80px 80px; /* Padding kiri untuk menggeser konten ke kiri */
-    color: var(--white); /* Warna teks putih untuk kontras */
-    overflow: hidden; /* Penting untuk carousel */
+    background-color: var(--black); 
+    padding: 80px 0 80px 80px; 
+    color: var(--white); 
+    overflow: hidden; 
 }
 
 .spotlight-content-wrapper {
     display: flex;
-    padding-right: 20px; /* Pertahankan padding kanan untuk jarak dari tepi viewport */
-    width: 100%; /* Pastikan mengambil lebar penuh dari parent */
-    align-items: flex-start; /* Vertically align items to the top */
-    gap: 40px; /* Jarak antara teks dan carousel */
+    padding-right: 20px; 
+    width: 100%; 
+    align-items: flex-start; 
+    gap: 40px; 
 }
 
 .spotlight-text-area {
-    flex: 0 0 350px; /* Lebar tetap untuk area teks di kiri */
+    flex: 0 0 350px; 
     min-width: 300px;
-    padding-right: 20px; /* Padding agar teks tidak terlalu dekat dengan carousel */
-    text-align: left; /* Teks rata kiri */
-    position: sticky; /* Membuat area teks tetap di tempat saat scroll carousel */
-    top: 80px; /* Sesuaikan dengan tinggi navbar atau posisi yang diinginkan */
-    align-self: flex-start; /* Penting untuk sticky dalam flex container */
-    height: fit-content; /* Agar tidak mengambil tinggi penuh */
+    padding-right: 20px; 
+    text-align: left; 
+    position: sticky; 
+    top: 80px; 
+    align-self: flex-start; 
+    height: fit-content; 
 }
 
 .spotlight-header {
-    text-align: left; /* Header teks rata kiri */
-    margin-bottom: 0; /* Hapus margin bawah default */
+    text-align: left; 
+    margin-bottom: 0; 
 }
 
 .spotlight-header h2 {
     font-size: 1.2em;
-    color: var(--primary-color); /* Warna hijau untuk "SPOTLIGHT" */
+    color: var(--primary-color); 
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 600;
@@ -152,44 +151,44 @@ a.card p {
     margin-top: 0;
     line-height: 1.2;
     font-weight: 700;
-    color: var(--white); /* Warna putih untuk judul utama */
+    color: var(--white); 
 }
 
 .carousel-navigation {
     display: flex;
     align-items: center;
-    margin-top: 40px; /* Jarak dari judul utama */
+    margin-top: 40px; 
     color: var(--white);
     font-size: 1.1em;
     font-weight: 500;
 }
 
 .current-slide {
-    font-size: 1.5em; /* Ukuran lebih besar untuk nomor slide saat ini */
+    font-size: 1.5em; 
     font-weight: 700;
     margin-right: 5px;
 }
 
-.slash { /* Untuk pemisah "/" */
+.slash { 
     color: rgba(255, 255, 255, 0.7);
     margin: 0 2px;
 }
 
 .total-slides {
     margin-left: 5px;
-    color: rgba(255, 255, 255, 0.7); /* Agak redup */
+    color: rgba(255, 255, 255, 0.7); 
 }
 
 .nav-arrows {
-    margin-left: 30px; /* Jarak dari nomor slide */
+    margin-left: 30px; 
     display: flex;
     gap: 15px;
 }
 
 .nav-arrows button {
     background: none;
-    border: 1px solid rgba(255, 255, 255, 0.5); /* Border putih transparan */
-    border-radius: 50%; /* Tombol bulat */
+    border: 1px solid rgba(255, 255, 255, 0.5); 
+    border-radius: 50%; 
     width: 40px;
     height: 40px;
     display: flex;
@@ -200,7 +199,7 @@ a.card p {
 }
 
 .nav-arrows button i {
-    color: var(--white); /* Ikon putih */
+    color: var(--white); 
     font-size: 1em;
 }
 
@@ -210,51 +209,51 @@ a.card p {
 }
 
 .spotlight-carousel-container {
-    flex-grow: 1; /* Mengisi sisa ruang */
-    overflow: hidden; /* Penting untuk carousel */
+    flex-grow: 1; 
+    overflow: hidden; 
 }
 
 .spotlight-carousel {
     display: flex;
-    overflow-x: scroll; /* Mengaktifkan scroll horizontal */
+    overflow-x: scroll; 
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    gap: 20px; /* Jarak antar kartu */
-    padding-bottom: 20px; /* Ruang untuk scrollbar */
+    gap: 20px; 
+    padding-bottom: 20px; 
 }
 
-/* Kustomisasi scrollbar untuk browser WebKit (Chrome, Safari) */
+
 .spotlight-carousel::-webkit-scrollbar {
     height: 10px;
 }
 
 .spotlight-carousel::-webkit-scrollbar-track {
-    background: #444; /* Track scrollbar lebih gelap */
+    background: #444; 
     border-radius: 10px;
 }
 
 .spotlight-carousel::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.3); /* Thumb scrollbar putih transparan */
+    background-color: rgba(255, 255, 255, 0.3); 
     border-radius: 10px;
-    border: 2px solid #444; /* Border thumb */
+    border: 2px solid #444; 
 }
 
 
 .spotlight-card {
-    flex: 0 0 350px; /* Lebar tetap untuk setiap kartu, sesuaikan jika perlu */
+    flex: 0 0 350px; 
     scroll-snap-align: start;
-    background-color: var(--white); /* Latar belakang kartu putih */
+    background-color: var(--white); 
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Shadow lebih gelap */
-    color: var(--text-color); /* Teks di dalam kartu kembali hitam */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
+    color: var(--text-color); 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: grab; /* Menunjukkan bisa digeser */
-    position: relative; /* Penting untuk positioning teks overlay */
+    cursor: grab; 
+    position: relative; 
 }
 
 .spotlight-card:active {
-    cursor: grabbing; /* Menunjukkan sedang digeser */
+    cursor: grabbing; 
 }
 
 .spotlight-card:hover {
@@ -263,9 +262,9 @@ a.card p {
 }
 
 .spotlight-card .spotlight-image-wrapper {
-    position: relative; /* Untuk menempatkan ikon overlay */
+    position: relative; 
     width: 100%;
-    height: 500px; /* Tinggi gambar ditingkatkan */
+    height: 500px; 
     overflow: hidden;
 }
 
@@ -278,59 +277,55 @@ a.card p {
 
 .spotlight-card .image-overlay-icon {
     position: absolute;
-    top: 20px; /* Sesuaikan posisi ikon dari atas */
-    right: 20px; /* Sesuaikan posisi ikon dari kanan */
-    transform: none; /* Hapus transform karena posisi sudah fixed */
-    background-color: rgba(255, 255, 255, 0.7); /* Latar belakang ikon transparan putih */
-    border-radius: 8px; /* Sudut sedikit membulat sesuai gambar */
-    width: 40px; /* Ukuran ikon lebih kecil */
+    top: 20px; 
+    right: 20px; 
+    transform: none; 
+    background-color: rgba(255, 255, 255, 0.7); 
+    border-radius: 8px; 
+    width: 40px; 
     height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 1; /* <--- DIUBAH: Selalu terlihat */
-    z-index: 2; /* Pastikan di atas gambar dan teks overlay */
-    border: 1px solid rgba(0, 0, 0, 0.1); /* Tambahkan border tipis */
+    opacity: 1; 
+    z-index: 2; 
+    border: 1px solid rgba(0, 0, 0, 0.1);  
 }
 
-/* Hapus hover opacity untuk image-overlay-icon jika selalu terlihat */
-/* .spotlight-card:hover .image-overlay-icon {
-    opacity: 1;
-} */
 
 .spotlight-card .image-overlay-icon i {
-    font-size: 1.2em; /* Ukuran ikon lebih kecil */
-    color: var(--text-color); /* Warna ikon */
+    font-size: 1.2em; 
+    color: var(--text-color); 
 }
 
 .spotlight-card-content {
-    position: absolute; /* <--- DIUBAH: Posisikan absolut */
-    bottom: 0; /* <--- DIUBAH: Posisikan di bawah */
+    position: absolute; 
+    bottom: 0; 
     left: 0;
     right: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)); /* <--- DIUBAH: Gradient overlay */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)); 
     padding: 20px;
-    padding-top: 80px; /* <--- DIUBAH: Padding atas untuk teks agar tidak menempel gambar */
-    text-align: left; /* Teks di dalam kartu rata kiri */
-    color: var(--white); /* <--- DIUBAH: Warna teks menjadi putih */
-    z-index: 1; /* Di atas gambar, di bawah ikon overlay */
+    padding-top: 80px; 
+    text-align: left; 
+    color: var(--white); 
+    z-index: 1; 
 }
 
 .spotlight-card-content h4 {
     font-size: 1.4em;
     font-weight: 600;
     margin-bottom: 10px;
-    color: var(--white); /* <--- DIUBAH: Warna judul menjadi putih */
+    color: var(--white); 
 }
 
 .spotlight-card-content p {
     font-size: 0.95em;
-    color: rgba(255, 255, 255, 0.8); /* <--- DIUBAH: Warna paragraf menjadi putih transparan */
+    color: rgba(255, 255, 255, 0.8); 
     line-height: 1.5;
 }
 
 
-/* Testimonial Section */
+/* Testimoni */
 .testimonial-section {
     padding: 80px 0;
     background-color: var(--white);
@@ -348,7 +343,7 @@ a.card p {
     padding-right: 20px;
 }
 
-/* Kustomisasi scrollbar untuk browser WebKit (Chrome, Safari) */
+
 .testimonial-carousel::-webkit-scrollbar {
     height: 10px;
 }
@@ -436,33 +431,32 @@ a.card p {
     font-size: 2.8em;
     margin-bottom: 40px;
     font-weight: 700;
-    position: relative; /* Penting untuk positioning pseudo-elemen */
-    display: inline-block; /* Agar lebar elemen sesuai dengan konten teksnya */
-    padding: 0 20px; /* Tambahkan padding agar ada ruang untuk garis di samping */
+    position: relative; 
+    display: inline-block; 
+    padding: 0 20px; 
 }
 
-/* --- TAMBAH: Pseudo-elemen untuk garis di samping kiri --- */
 .map-box h3::before {
-    content: ''; /* Konten kosong adalah wajib */
+    content: ''; 
     position: absolute;
-    left: -300px; /* Posisikan di paling kiri dari elemen h3 */
-    top: 50%; /* Posisikan di tengah vertikal */
-    transform: translateY(-50%); /* Geser ke atas setengah dari tingginya sendiri */
-    width: 300px; /* Lebar garis, sesuaikan sesuai keinginan */
-    height: 3px; /* Ketebalan garis */
-    background-color: var(--text-color); /* Warna garis (hitam atau abu-abu gelap) */
+    left: -300px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    width: 300px; 
+    height: 3px; 
+    background-color: var(--text-color); 
 }
 
-/* --- TAMBAH: Pseudo-elemen untuk garis di samping kanan --- */
+
 .map-box h3::after {
-    content: ''; /* Konten kosong adalah wajib */
+    content: ''; 
     position: absolute;
-    right: -300px; /* Posisikan di paling kanan dari elemen h3 */
-    top: 50%; /* Posisikan di tengah vertikal */
-    transform: translateY(-50%); /* Geser ke atas setengah dari tingginya sendiri */
-    width: 300px; /* Lebar garis, sesuaikan sesuai keinginan */
-    height: 3px; /* Ketebalan garis */
-    background-color: var(--text-color); /* Warna garis (hitam atau abu-abu gelap) */
+    right: -300px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    width: 300px; 
+    height: 3px; 
+    background-color: var(--text-color); 
 }
 
 .map-box iframe {
@@ -472,26 +466,25 @@ a.card p {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive adjustments for the lines */
+/* Responsive */
 @media (max-width: 768px) {
     .map-box h3::before,
     .map-box h3::after {
-        width: 50px; /* Smaller width for lines on smaller screens */
+        width: 50px; 
     }
 }
 
 @media (max-width: 480px) {
     .map-box h3 {
-        padding: 0 15px; /* Adjust padding on smaller screens */
+        padding: 0 15px; 
     }
     .map-box h3::before,
     .map-box h3::after {
-        width: 30px; /* Even smaller width for lines on very small screens */
+        width: 30px; 
     }
 }
 
 
-/* Responsive Design */
 @media (max-width: 1024px) {
     .navbar .nav-links {
         gap: 25px;
@@ -503,7 +496,6 @@ a.card p {
         width: 180px;
     }
     .hero-content {
-        /* Sesuaikan jika ada teks/slogan */
     }
     .spotlight-header h3 {
         font-size: 2.8em;
@@ -512,28 +504,28 @@ a.card p {
         font-size: 2.5em;
     }
     .spotlight-content-wrapper {
-        flex-direction: column; /* Stack columns on smaller screens */
-        align-items: flex-start; /* Align text to left */
+        flex-direction: column; 
+        align-items: flex-start; 
         gap: 30px;
     }
     .spotlight-text-area {
         width: 100%;
         padding-right: 0;
-        position: static; /* Hilangkan sticky di mobile */
+        position: static; 
         top: auto;
     }
     .spotlight-carousel-container {
         width: 100%;
     }
     .spotlight-carousel {
-        padding-left: 20px; /* Kembali berikan padding agar tidak menempel tepi */
+        padding-left: 20px; 
         padding-right: 20px;
     }
 }
 
 @media (max-width: 992px) {
     .navbar .nav-links {
-        display: none; /* Sembunyikan nav links untuk mode mobile */
+        display: none; 
     }
 
     .navbar-container {
@@ -565,7 +557,7 @@ a.card p {
         font-size: 1em;
     }
     .cards-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 kolom di tablet */
+        grid-template-columns: repeat(2, 1fr); 
     }
     .testimonial-card {
         flex: 0 0 340px;
@@ -600,7 +592,6 @@ a.card p {
         height: 450px;
     }
     .hero-content {
-        /* Sesuaikan jika ada teks/slogan */
     }
 
     .video-section, .experience-section, .spotlight-section, .testimonial-section, .map-section, .footer {
@@ -632,17 +623,17 @@ a.card p {
         flex: 0 0 300px;
     }
     .footer-columns {
-        grid-template-columns: 1fr; /* Satu kolom di mobile */
+        grid-template-columns: 1fr; 
     }
     .cards-grid {
-        grid-template-columns: 1fr; /* 1 kolom di mobile */
+        grid-template-columns: 1fr; 
     }
     .spotlight-carousel {
-        padding-left: 15px; /* Sesuaikan padding carousel di mobile */
+        padding-left: 15px; 
         padding-right: 15px;
     }
     .spotlight-card {
-        flex: 0 0 80%; /* Kartu mengisi 80% lebar layar */
+        flex: 0 0 80%; 
     }
 }
 
@@ -668,7 +659,6 @@ a.card p {
         height: 380px;
     }
     .hero-content {
-        /* Sesuaikan jika ada teks/slogan */
     }
 
     .section-title {
@@ -706,3 +696,4 @@ a.card p {
         margin: 0 5px;
     }
 }
+

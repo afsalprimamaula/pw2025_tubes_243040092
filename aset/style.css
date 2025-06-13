@@ -1,9 +1,8 @@
-/* General Styling */
 :root {
-    --primary-color: #4CAF50;
-    --accent-color: #DDF6D2;
+    --primary-color: #28a745; 
+    --accent-color: #e8f5e9;
     --text-color: #333;
-    --light-gray: #f4f4f4;
+    --light-gray: #f8f9fa;
     --dark-gray: #555;
     --white: #fff;
     --black: #000;
@@ -18,11 +17,11 @@ html {
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif; 
     margin: 0;
     line-height: 1.6;
     color: var(--text-color);
-    background-color: var(--white);
+    background-color: var(--light-gray);
 }
 
 .container {
@@ -37,16 +36,24 @@ a {
     transition: color 0.3s ease;
 }
 
-/* Navbar (Dibuat Fixed) */
+/* Navbar */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1001;
-    background-color: rgba(0, 0, 0, 0.1);
     padding: 15px 0;
-    box-shadow: none;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.navbar.transparent {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.navbar:not(.transparent) {
+    background-color: var(--white);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .navbar-container {
@@ -59,6 +66,10 @@ a {
     font-size: 1.8em;
     font-weight: 700;
     color: var(--white);
+}
+
+.navbar:not(.transparent) .logo {
+    color: var(--text-color);
 }
 
 .navbar .nav-links {
@@ -77,43 +88,71 @@ a {
     padding: 5px 0;
 }
 
+.navbar:not(.transparent) .nav-links a {
+    color: var(--dark-gray);
+}
+
 .navbar .nav-links a:hover {
     color: var(--primary-color);
 }
 
+/* Navbar Right */
 .navbar-right {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
+.search-container {
+    position: relative;
+}
+
 .search-box {
     position: relative;
-    display: flex;
-    align-items: center;
 }
 
 .search-box input {
-    padding: 8px 10px 8px 35px;
+    padding: 8px 15px 8px 40px;
     border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 20px;
     outline: none;
     font-size: 0.9em;
     color: var(--white);
-    width: 150px;
+    width: 200px;
     background-color: rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
+}
+
+.navbar:not(.transparent) .search-box input {
+    border-color: #ccc;
+    color: var(--text-color);
+    background-color: #f1f1f1;
 }
 
 .search-box input::placeholder {
     color: rgba(255, 255, 255, 0.7);
 }
+.navbar:not(.transparent) .search-box input::placeholder {
+    color: #999;
+}
 
-.search-icon {
+.search-icon-button {
+    background: none;
+    border: none;
+    padding: 0;
     position: absolute;
     left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.search-icon {
     color: var(--white);
     font-size: 0.9em;
+}
+.navbar:not(.transparent) .search-icon {
+    color: var(--dark-gray);
 }
 
 .login-button {
@@ -124,82 +163,121 @@ a {
     border-radius: 20px;
     cursor: pointer;
     font-weight: 600;
-    transition: background-color 0.3s ease;
 }
 
-.login-button-link {
-    text-decoration: none;
-}
-
-/* === Dropdown Profile Styling (PERBAIKAN) === */
+/* Profile Dropdown */
 .profile-dropdown {
     position: relative;
-    display: inline-block;
-    /* TAMBAHKAN INI: Memberi ruang tak terlihat di bawah ikon agar hover tidak putus */
-
+    cursor: pointer;
+    padding-bottom: 15px;
+    margin-bottom: -15px; 
 }
 
-.profile-icon {
-    font-size: 1.8em;
+.profile-dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     color: var(--white);
-    cursor: pointer;
+    position: relative; 
+    z-index: 1002; 
+}
+
+.navbar:not(.transparent) .profile-dropdown-toggle {
+    color: var(--dark-gray);
+}
+
+.profile-dropdown .profile-icon {
+    font-size: 1.8rem;
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
     right: 0;
-    top: 100%;
-    background-color: #f9f9f9;
+    top: calc(100% + 10px);
+    background-color: #fff;
     min-width: 220px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1002;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1001; 
     border-radius: 8px;
     overflow: hidden;
+    opacity: 0; 
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .profile-dropdown:hover .dropdown-content {
     display: block;
-}
-
-.dropdown-content a {
-    color: var(--dark-gray);
-    padding: 12px 16px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    font-size: 0.95em;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.dropdown-content a i {
-    color: var(--dark-gray);
-    margin-right: 12px;
-    width: 20px;
-    text-align: center;
-    transition: color 0.2s ease;
-}
-
-.dropdown-content a:hover {
-    background-color: var(--accent-color);
-    color: var(--primary-color);
-}
-
-.dropdown-content a:hover i {
-    color: var(--primary-color);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .dropdown-header {
     padding: 12px 16px;
     border-bottom: 1px solid #e0e0e0;
-    background-color: #f1f1f1;
+    background-color: #f8f9fa;
+    font-weight: bold;
 }
 
 .dropdown-header span {
-    font-weight: 700;
-    color: var(--text-color);
-    font-size: 1em;
+    color: #000 !important; 
 }
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.dropdown-content a i {
+    margin-right: 12px;
+    width: 18px;
+    text-align: center;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Live Search  */
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-top: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+    display: none; 
+    z-index: 1000;
+}
+.search-result-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #eee;
+}
+.search-result-item:hover {
+    background-color: #f5f5f5;
+}
+.search-result-item span {
+    font-size: 0.9rem;
+}
+.search-no-results {
+    padding: 15px;
+    color: #6c757d;
+    text-align: center;
+}
+
 
 /* Footer */
 .footer {

@@ -1,5 +1,5 @@
 body {
-    background-color: #F8F5F0; /* Warna latar belakang krem lembut */
+    background-color: #F8F5F0; 
     font-family: 'Nunito', sans-serif;
     display: flex;
     justify-content: center;
@@ -23,14 +23,14 @@ body {
 
 .success-icon {
     font-size: 4rem;
-    color: #28a745; /* Warna hijau sukses */
+    color: #28a745; 
     margin-bottom: 20px;
 }
 
 .success-title {
     font-weight: 800;
     font-size: 2rem;
-    color: #5C4B42; /* Coklat tua */
+    color: #5C4B42; 
     margin-bottom: 15px;
 }
 
@@ -42,7 +42,7 @@ body {
 }
 
 .info-box {
-    background-color: #FFF7E6; /* Krem kekuningan */
+    background-color: #FFF7E6; 
     border: 1px solid #FFE6B3;
     border-radius: 10px;
     padding: 25px;
@@ -75,7 +75,7 @@ body {
     content: '•';
     position: absolute;
     left: 0;
-    color: #D98218; /* Oranye */
+    color: #D98218; 
     font-weight: bold;
 }
 
@@ -102,7 +102,7 @@ body {
 }
 
 .btn-primary-custom {
-    background-color: #8A6D5D; /* Coklat sesuai gambar */
+    background-color: #8A6D5D; 
     color: white;
     border: 1px solid #8A6D5D;
 }

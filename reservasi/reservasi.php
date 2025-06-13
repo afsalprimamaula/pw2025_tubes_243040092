@@ -1,6 +1,7 @@
+
 <?php 
 session_start();
-require_once '../config/koneksi.php'; // Sesuaikan path jika perlu
+require_once '../config/koneksi.php'; 
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +17,6 @@ require_once '../config/koneksi.php'; // Sesuaikan path jika perlu
 <body>
 
     <header class="hero-section">
-        <img src="img/foto1.jpg" alt="Background Image" class="hero-image-background">
         <div class="hero-overlay"></div>
 
         <nav class="navbar transparent">
@@ -35,26 +35,34 @@ require_once '../config/koneksi.php'; // Sesuaikan path jika perlu
                 </ul>
 
                 <div class="navbar-right">
-                    <div class="search-box">
-                        <input type="text" placeholder="search">
-                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <div class="search-container">
+                        <form action="../package/package.php" method="GET" class="search-form">
+                            <div class="search-box">
+                                <input type="text" name="q" id="navbarSearchInput" placeholder="Cari paket..." autocomplete="off">
+                                <button type="submit" class="search-icon-button">
+                                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                                </button>
+                            </div>
+                        </form>
+                        <div id="searchResults" class="search-results"></div>
                     </div>
-
+                    
                     <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
                         <div class="profile-dropdown">
                             <i class="fa-solid fa-user-circle profile-icon"></i>
+                            
                             <div class="dropdown-content">
                                 <div class="dropdown-header">
-                                    <span><?php echo htmlspecialchars($_SESSION['user_nama']); ?></span>
+                                    <span>Halo, <?php echo htmlspecialchars($_SESSION['user_nama']); ?></span>
                                 </div>
-                                <a href="../profile/profile.php"><i class="fa-solid fa-user"></i> Lihat Profile Saya</a>
-                                <a href="../profile/reservasi_saya.php"><i class="fa-solid fa-calendar-check"></i> Reservasi Saya</a>
-                                <a href="#"><i class="fa-solid fa-key"></i> Ubah Password</a>
-                                <a href="../controller/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
+                                <a href="../profile/profile.php"><i class="fas fa-user-edit"></i> Lihat Profile</a>
+                                <a href="../profile/reservasi_saya.php"><i class="fas fa-receipt"></i> Reservasi Saya</a>
+                                <a href="../profile/ubah_password.php"><i class="fas fa-key"></i> Ubah Password</a>
+                                <a href="../controller/logout.php"><i class="fas fa-sign-out-alt"></i> Log Out</a>
                             </div>
                         </div>
                     <?php else: ?>
-                        <a href="../login/login.php" class="login-button-link"><button class="login-button">Login</button></a>
+                        <a href="../login/login.php" class="login-button">Login</a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -96,7 +104,6 @@ require_once '../config/koneksi.php'; // Sesuaikan path jika perlu
         <div class="container">
             <h2>Reservasi Saya</h2>
             <p>Lihat dan kelola reservasi yang telah Anda buat.</p>
-            <!-- UPDATED: Link to new reservations page -->
             <a href="../profile/reservasi_saya.php" class="btn-lihat-reservasi">Lihat Reservasi</a>
             </div>
     </section>
@@ -121,7 +128,7 @@ require_once '../config/koneksi.php'; // Sesuaikan path jika perlu
                 </div>
                 <div class="footer-col footer-col-contact">
                     <h4>Kontak</h4>
-                    <p><i class="fa-solid fa-envelope"></i> info@muarajambu.com</p>
+                    <p><i class="fa-solid fa-envelope"></i> muarajambu@gmail.com</p>
                     <p><i class="fa-solid fa-phone"></i> 0821-1111-8313 (Yayat)</p>
                                                     <p>0813-1500-2823 (Sandi)</p>
                                                     <p>0813-1500-2824 (Aceng)</p>
@@ -137,5 +144,6 @@ require_once '../config/koneksi.php'; // Sesuaikan path jika perlu
         </div>
     </footer>
 
+    <script src="../aset/main.js"></script>
 </body>
 </html>

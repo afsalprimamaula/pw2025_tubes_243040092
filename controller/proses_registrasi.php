@@ -1,58 +1,49 @@
 <?php
-session_start();
 require_once '../config/koneksi.php';
 
-$errorMessage = '';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
+$nama = $_POST['name'];
+$email = $_POST['email'];
+$password = $_POST['password'];
+$confirm_password = $_POST['confirm_password'];
 
-    if (empty($email) || empty($password)) {
-        $errorMessage = "Email dan Password tidak boleh kosong!";
-    } else {
-        $sql = "SELECT id, nama, email, password, role FROM users WHERE email = ?";
-        $stmt = $conn->prepare($sql);
 
-        if ($stmt) {
-            $stmt->bind_param("s", $email);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            if ($result->num_rows === 1) {
-                $user = $result->fetch_assoc();
-
-                if (password_verify($password, $user['password'])) {
-                    // Login berhasil!
-                    $_SESSION['user_id'] = $user['id'];
-                    // PENTING: Pastikan Anda menggunakan $user['nama'] di sini
-                    $_SESSION['user_nama'] = $user['nama']; 
-                    $_SESSION['user_email'] = $user['email'];
-                    $_SESSION['user_role'] = $user['role'];
-                    $_SESSION['loggedin'] = true;
-
-                    header("Location: ../home/home.php");
-                    exit();
-
-                } else {
-                    $errorMessage = "Email atau Password yang Anda masukkan salah!";
-                }
-            } else {
-                $errorMessage = "Email atau Password yang Anda masukkan salah!";
-            }
-            $stmt->close();
-        } else {
-            $errorMessage = "Terjadi kesalahan pada sistem. Coba lagi nanti.";
-        }
-    }
-    
-    if (!empty($errorMessage)) {
-        $_SESSION['login_error'] = $errorMessage;
-        header('Location: ../login/login.php');
-        exit();
-    }
+if (empty($nama) || empty($email) || empty($password)) {
+    header("Location: ../registrasi/registrasi.php?error=Harap isi semua field.");
+    exit();
 }
 
-$conn->close();
+if ($password !== $confirm_password) {
+    header("Location: ../registrasi/registrasi.php?error=Password tidak cocok.");
+    exit();
+}
+
+$stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$stmt->store_result();
+
+if ($stmt->num_rows > 0) {
+    $stmt->close();
+    header("Location: ../registrasi/registrasi.php?error=Email sudah terdaftar.");
+    exit();
+}
+$stmt->close();
+
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+$stmt = $conn->prepare("INSERT INTO users (nama, email, password) VALUES (?, ?, ?)");
+$stmt->bind_param("sss", $nama, $email, $hashed_password);
+
+if ($stmt->execute()) {
+
+    $stmt->close();
+    header("Location: ../login/login.php?success=Registrasi berhasil! Silakan login.");
+    exit();
+} else {
+
+    $stmt->close();
+    header("Location: ../registrasi/registrasi.php?error=Terjadi kesalahan. Coba lagi.");
+    exit();
+}
 ?>

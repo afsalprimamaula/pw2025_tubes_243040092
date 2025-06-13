@@ -43,7 +43,6 @@
             </p>
 
             <div class="action-buttons">
-                <!-- UPDATED: Link to new reservations page -->
                 <a href="../profile/reservasi_saya.php" class="btn btn-primary-custom">Lihat Reservasi Saya</a>
                 <a href="../package/package.php" class="btn btn-secondary-custom">Lihat Package Lainnya</a>
             </div>

@@ -1,0 +1,45 @@
+body { 
+    background-color: #f4f7f6; 
+    font-family: 'Poppins', sans-serif; 
+}
+.card { 
+    border: none; 
+    border-radius: 15px; 
+}
+.card-header { 
+    border-top-left-radius: 14px; 
+    border-top-right-radius: 14px; 
+}
+
+.rating-stars {
+    display: inline-block;
+    direction: rtl;
+}
+.rating-stars input[type="radio"] {
+    display: none; 
+}
+.rating-stars label {
+    font-size: 3rem; 
+    color: #e0e0e0; 
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+    padding: 0 5px;
+}
+.rating-stars label:hover,
+.rating-stars label:hover ~ label {
+    color: #ffc107;
+}
+
+.rating-stars input[type="radio"]:checked ~ label {
+    color: #ffc107;
+}
+
+.btn-primary {
+    background-color: #28a745;
+    border-color: #28a745;
+    font-weight: 500;
+}
+.btn-primary:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}

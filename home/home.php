@@ -1,11 +1,15 @@
-<?php 
+<?php
 session_start();
-require_once '../config/koneksi.php';
+require_once '../config/koneksi.php'; 
 
-if (!isset($_SESSION['loggedin'])) {
-    header("Location: ../login/login.php");
-    exit;
-}
+$testimoni_query = "SELECT t.ulasan, u.nama, u.foto_profil, p.nama_paket 
+                    FROM testimoni t 
+                    JOIN users u ON t.user_id = u.id 
+                    LEFT JOIN packages p ON t.package_id = p.id
+                    WHERE t.status = 'approved' 
+                    ORDER BY t.created_at DESC 
+                    LIMIT 3";
+$testimoni_result = $conn->query($testimoni_query);
 ?>
 
 <!DOCTYPE html>
@@ -41,28 +45,35 @@ if (!isset($_SESSION['loggedin'])) {
                     <li><a href="../contact/contact.php">Contact Us</a></li>
                 </ul>
 
-                <div class="navbar-right">
-                    <div class="search-box">
-                        <input type="text" placeholder="search">
-                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+               <div class="navbar-right">
+                    <div class="search-container">
+                        <form action="../package/package.php" method="GET" class="search-form">
+                            <div class="search-box">
+                                <input type="text" name="q" id="navbarSearchInput" placeholder="Cari paket..." autocomplete="off">
+                                <button type="submit" class="search-icon-button">
+                                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                                </button>
+                            </div>
+                        </form>
+                        <div id="searchResults" class="search-results"></div>
                     </div>
-
+                    
                     <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
                         <div class="profile-dropdown">
                             <i class="fa-solid fa-user-circle profile-icon"></i>
+                            
                             <div class="dropdown-content">
                                 <div class="dropdown-header">
-                                    <span><?php echo htmlspecialchars($_SESSION['user_nama']); ?></span>
+                                    <span>Halo, <?php echo htmlspecialchars($_SESSION['user_nama']); ?></span>
                                 </div>
-                                <a href="../profile/profile.php"><i class="fa-solid fa-user"></i> Lihat Profile Saya</a>
-                                <!-- UPDATED: Link to new reservations page -->
-                                <a href="../profile/reservasi_saya.php"><i class="fa-solid fa-calendar-check"></i> Reservasi Saya</a>
-                                <a href="#"><i class="fa-solid fa-key"></i> Ubah Password</a>
-                                <a href="../controller/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
+                                <a href="../profile/profile.php"><i class="fas fa-user-edit"></i> Lihat Profile</a>
+                                <a href="../profile/reservasi_saya.php"><i class="fas fa-receipt"></i> Reservasi Saya</a>
+                                <a href="../profile/ubah_password.php"><i class="fas fa-key"></i> Ubah Password</a>
+                                <a href="../controller/logout.php"><i class="fas fa-sign-out-alt"></i> Log Out</a>
                             </div>
                         </div>
                     <?php else: ?>
-                        <a href="../login/login.php" class="login-button-link"><button class="login-button">Login</button></a>
+                        <a href="../login/login.php" class="login-button">Login</a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -201,39 +212,27 @@ if (!isset($_SESSION['loggedin'])) {
             <div class="container">
                 <h2 class="section-title">Testimoni</h2>
                 <div class="testimonial-carousel">
-                    <div class="testimonial-card">
-                        <img src="assets/avatar1.jpg" alt="User 1">
-                        <p>"A terrific piece of praise! Pelayanan sangat ramah dan tempatnya indah sekali, ingin kembali lagi!"</p>
-                        <span>- Nama Pelanggan 1</span>
-                    </div>
-                    <div class="testimonial-card">
-                        <img src="assets/avatar2.jpg" alt="User 2">
-                        <p>"A fantastic bit of feedback! Liburan di Muara Jambu adalah pengalaman tak terlupakan. Sangat direkomendasikan!"</p>
-                        <span>- Nama Pelanggan 2</span>
-                    </div>
-                    <div class="testimonial-card">
-                        <img src="assets/avatar3.jpg" alt="User 3">
-                        <p>"A genuinely glowing review! Fasilitas lengkap, pemandangan asri, cocok untuk healing dan keluarga."</p>
-                        <span>- Nama Pelanggan 3</span>
-                    </div>
-                    <div class="testimonial-card">
-                        <img src="assets/avatar4.jpg" alt="User 4">
-                        <p>"Sungguh pengalaman yang menakjubkan! Pemandu wisata sangat membantu dan ramah."</p>
-                        <span>- Nama Pelanggan 4</span>
-                    </div>
+                    <?php if ($testimoni_result && $testimoni_result->num_rows > 0): ?>
+                        <?php while($testi = $testimoni_result->fetch_assoc()): ?>
+                            <div class="testimonial-card">
+                                <img src="../<?php echo htmlspecialchars($testi['foto_profil'] ?? 'aset/img/default-avatar.png'); ?>" alt="Foto <?php echo htmlspecialchars($testi['nama']); ?>">
+                                <?php if(!empty($testi['nama_paket'])): ?>
+                                    <small class="text-muted package-review-label">
+                                        Ulasan untuk: <strong><?php echo htmlspecialchars($testi['nama_paket']); ?></strong>
+                                    </small>
+                                <?php endif; ?>
+                                <p>"<?php echo htmlspecialchars($testi['ulasan']); ?>"</p>
+                                <span>- <?php echo htmlspecialchars($testi['nama']); ?></span>
+                            </div>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <p>Belum ada testimoni untuk ditampilkan.</p>
+                    <?php endif; ?>
                 </div>
             </div>
         </section>
 
-        <section id="map-section" class="map-section">
-            <div class="container">
-                <div class="map-box">
-                    <p class="subtitle-map">DISCOVER TOP DESTINATIONS AND ATTRACTIONS</p>
-                    <h3>MUARA JAMBU</h3>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d126791.43197172928!2d107.59697535695828!3d-6.741500092182958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x2e6921335eb82d27%3A0xfb0a00e7c1c0eeaf!2sKp.%20Neglasari%20RT%2FRW.018%2F004%2C%20Desa%2C%20Cibeusi%2C%20Kec.%20Ciater%2C%20Kabupaten%20Subang%2C%20Jawa%20Barat%2041281!3m2!1d-6.7415069999999995!2d107.6793773!5e0!3m2!1sid!2sid!4v1748865432226!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-        </section>
+        <section id="map-section" class="map-section"></section>
     </main>
 
     <footer class="footer">
@@ -256,7 +255,7 @@ if (!isset($_SESSION['loggedin'])) {
                 </div>
                 <div class="footer-col footer-col-contact">
                     <h4>Kontak</h4>
-                    <p><i class="fa-solid fa-envelope"></i> info@muarajambu.com</p>
+                    <p><i class="fa-solid fa-envelope"></i> muarajambu@gmail.com</p>
                     <p><i class="fa-solid fa-phone"></i> 0821-1111-8313 (Yayat)</p>
                                                     <p>0813-1500-2823 (Sandi)</p>
                                                     <p>0813-1500-2824 (Aceng)</p>
@@ -313,6 +312,9 @@ if (!isset($_SESSION['loggedin'])) {
             updateSlideNumber();
         });
     </script>
+
+<script src="../aset/main.js"></script>
+
 
 </body>
 </html>

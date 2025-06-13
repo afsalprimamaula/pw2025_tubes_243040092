@@ -1,67 +1,121 @@
 body {
-    background-color: #F8F5F0; /* Warna latar belakang halaman */
-    font-family: 'Nunito', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px 0; /* Menambahkan padding agar tidak menempel saat di-scroll di mobile */
+    background-color: #f4f7f6;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
 }
 
-.reservation-container {
-    max-width: 550px;
-    width: 100%;
-}
-
-.reservation-card {
-    background-color: #FFFFFF;
-    border-radius: 15px;
-    padding: 40px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+.card {
     border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+    transition: all 0.3s ease-in-out;
 }
 
-.reservation-card h2 {
-    text-align: center;
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.form-card .card-body {
+    padding: 2.5rem;
+}
+
+.card-title {
     font-weight: 700;
-    margin-bottom: 30px;
-    color: #5C4B42;
+    color: #2c3e50;
+}
+
+.card-subtitle {
+    color: #7f8c8d;
+    font-size: 0.95rem;
 }
 
 .form-label {
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #5C4B42;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
 }
 
-.form-control, .form-select {
-    height: 70px;
-    border-radius: 8px;
-    border: 1px solid #E0D9D4;
-}
-.form-control:focus, .form-select:focus {
-    border-color: #A89689;
-    box-shadow: 0 0 0 0.25rem rgba(168, 150, 137, 0.25);
+.input-group-text {
+    background-color: #e9ecef;
+    border-right: 0;
+    color: #7f8c8d;
 }
 
-.alert-custom {
-    background-color: #FFF7E6;
-    border-color: #FFE6B3;
-    color: #D98218;
-    border-radius: 8px;
+.form-control {
+    height: 50px;
+    border-left: 0;
+    padding-left: 0.5rem;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #bdc3c7;
+}
+
+.input-group:focus-within .input-group-text {
+    color: #2c3e50;
+    background-color: #e9ecef;
+    border-color: #bdc3c7;
+}
+
+textarea.form-control {
+    height: auto;
+    border-left: 1px solid #dee2e6;
 }
 
 .btn-submit {
-    background-color: #8A9CA8;
+    background: linear-gradient(45deg, #34495e, #2c3e50);
     color: white;
-    font-weight: 700;
+    font-weight: 600;
     padding: 12px;
     border-radius: 8px;
-    width: 100%;
     border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.2);
 }
 
 .btn-submit:hover {
-    background-color: #71828f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(44, 62, 80, 0.3);
+}
+
+.info-card {
+    background-color: #2c3e50;
     color: white;
+}
+
+.info-title {
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-list {
+    list-style: none;
+    padding: 0;
+}
+
+.info-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.info-list i {
+    font-size: 1.5rem;
+    width: 40px;
+    text-align: center;
+    margin-right: 15px;
+    opacity: 0.8;
+}
+
+.info-list strong {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.info-list span {
+    font-size: 0.85rem;
+    opacity: 0.9;
 }

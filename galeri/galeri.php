@@ -1,6 +1,31 @@
-<?php 
+<?php
 session_start();
-require_once '../config/koneksi.php'; // Sesuaikan path jika perlu
+require_once '../config/koneksi.php';
+
+// --- LOGIKA PAGINATION ---
+// 1. Tentukan berapa item per halaman
+$limit = 6; 
+
+// 2. Tentukan halaman saat ini
+$halaman_aktif = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
+if ($halaman_aktif < 1) {
+    $halaman_aktif = 1;
+}
+
+// 3. Hitung offset (data mulai dari mana)
+$offset = ($halaman_aktif - 1) * $limit;
+
+// 4. Hitung total data gambar di database
+$total_result = $conn->query("SELECT COUNT(*) as total FROM gallery");
+$total_rows = $total_result->fetch_assoc()['total'];
+$total_halaman = ceil($total_rows / $limit);
+
+// 5. Ambil data gambar sesuai limit dan offset
+$stmt = $conn->prepare("SELECT * FROM gallery ORDER BY uploaded_at DESC LIMIT ? OFFSET ?");
+$stmt->bind_param("ii", $limit, $offset);
+$stmt->execute();
+$gallery_result = $stmt->get_result();
+// --- SELESAI LOGIKA PAGINATION ---
 ?>
 
 <!DOCTYPE html>
@@ -30,33 +55,41 @@ require_once '../config/koneksi.php'; // Sesuaikan path jika perlu
                 <ul class="nav-links">
                     <li><a href="../home/home.php">Home</a></li>
                     <li><a href="../package/package.php">Package</a></li>
-                    <li><a href="reservasi.php">Reservation</a></li>
+                    <li><a href="../reservasi/reservasi.php">Reservation</a></li>
                     <li><a href="../contact/contact.php">Contact Us</a></li>
                 </ul>
 
-                <div class="navbar-right">
-                    <div class="search-box">
-                        <input type="text" placeholder="search">
-                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                    </div>
-
-                    <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
-                        <div class="profile-dropdown">
-                            <i class="fa-solid fa-user-circle profile-icon"></i>
-                            <div class="dropdown-content">
-                                <div class="dropdown-header">
-                                    <span><?php echo htmlspecialchars($_SESSION['user_nama']); ?></span>
-                                </div>
-                                <a href="../profile/profile.php"><i class="fa-solid fa-user"></i> Lihat Profile Saya</a>
-                                <a href="#"><i class="fa-solid fa-calendar-check"></i> Reservasi Saya</a>
-                                <a href="#"><i class="fa-solid fa-key"></i> Ubah Password</a>
-                                <a href="../controller/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
-                            </div>
+              <div class="navbar-right">
+                <div class="search-container">
+                    <form action="../package/package.php" method="GET" class="search-form">
+                        <div class="search-box">
+                            <input type="text" name="q" id="navbarSearchInput" placeholder="Cari paket..." autocomplete="off">
+                            <button type="submit" class="search-icon-button">
+                                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                            </button>
                         </div>
-                    <?php else: ?>
-                        <a href="../login/login.php" class="login-button-link"><button class="login-button">Login</button></a>
-                    <?php endif; ?>
+                    </form>
+                    <div id="searchResults" class="search-results"></div>
                 </div>
+                
+                <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+                    <div class="profile-dropdown">
+                        <i class="fa-solid fa-user-circle profile-icon"></i>
+                        
+                        <div class="dropdown-content">
+                            <div class="dropdown-header">
+                                <span>Halo, <?php echo htmlspecialchars($_SESSION['user_nama']); ?></span>
+                            </div>
+                            <a href="../profile/profile.php"><i class="fas fa-user-edit"></i> Lihat Profile</a>
+                            <a href="../profile/reservasi_saya.php"><i class="fas fa-receipt"></i> Reservasi Saya</a>
+                            <a href="../profile/ubah_password.php"><i class="fas fa-key"></i> Ubah Password</a>
+                            <a href="../controller/logout.php"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <a href="../login/login.php" class="login-button">Login</a>
+                <?php endif; ?>
+            </div>
             </div>
         </nav>
 
@@ -71,64 +104,33 @@ require_once '../config/koneksi.php'; // Sesuaikan path jika perlu
     <section class="gallery-section">
         <div class="container">
             <div class="gallery-grid">
-                <div class="gallery-card">
-                    <div class="gallery-image-container">
-                        <img src="img/2.jpg" alt="Spot Pemandangan">
-                        <span class="gallery-tag">Pemandangan</span>
-                    </div>
-                </div>
-
-                <div class="gallery-card">
-                    <div class="gallery-image-container">
-                        <img src="img/3.jpg" alt="Aliran Sungai">
-                        <span class="gallery-tag">Sungai</span>
-                    </div>
-                </div>
-
-                <div class="gallery-card">
-                    <div class="gallery-image-container">
-                        <img src="img/4.jpg" alt="Area Tenda">
-                        <span class="gallery-tag">Camping</span>
-                    </div>
-                </div>
-
-                <div class="gallery-card">
-                    <div class="gallery-image-container">
-                        <img src="img/5.jpg" alt="Api Unggun">
-                        <span class="gallery-tag">Api Unggun</span>
-                    </div>
-                </div>
-
-                <div class="gallery-card">
-                    <div class="gallery-image-container">
-                        <img src="img/6.jpg" alt="Saung Bambu">
-                         <span class="gallery-tag">Saung</span>
-                    </div>
-                </div>
-
-                <div class="gallery-card">
-                    <div class="gallery-image-container">
-                        <img src="img/7.jpg" alt="Jembatan Kayu">
-                        <span class="gallery-tag">Jembatan</span>
-                    </div>
-                </div>
+                <?php if ($gallery_result->num_rows > 0): ?>
+                    <?php while($item = $gallery_result->fetch_assoc()): ?>
+                        <div class="gallery-card">
+                            <div class="gallery-image-container">
+                                <img src="../<?php echo htmlspecialchars($item['image_url']); ?>" alt="<?php echo htmlspecialchars($item['caption']); ?>">
+                                <span class="gallery-tag"><?php echo htmlspecialchars($item['tag']); ?></span>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <p class="text-center">Belum ada gambar di galeri.</p>
+                <?php endif; ?>
             </div>
 
             <div class="pagination-container">
-                <span class="pagination-info">Menampilkan 1 - 6 dari 42 spot</span>
+                <span class="pagination-info">Menampilkan <?php echo $gallery_result->num_rows; ?> dari <?php echo $total_rows; ?> spot</span>
                 <div class="pagination-nav">
-                    <a href="#" class="page-link disabled">Sebelumnya</a>
-                    <a href="#" class="page-link active">1</a>
-                    <a href="#" class="page-link">2</a>
-                    <a href="#" class="page-link">3</a>
-                    <a href="#" class="page-link">4</a>
-                    <a href="#" class="page-link">5</a>
-                    <a href="#" class="page-link">6</a>
-                    <a href="#" class="page-link">7</a>
-                    <a href="#" class="page-link">Selanjutnya</a>
+                    <a href="?halaman=<?php echo $halaman_aktif - 1; ?>" class="page-link <?php if($halaman_aktif <= 1) echo 'disabled'; ?>">Sebelumnya</a>
+                    
+                    <?php for ($i = 1; $i <= $total_halaman; $i++): ?>
+                        <a href="?halaman=<?php echo $i; ?>" class="page-link <?php if($halaman_aktif == $i) echo 'active'; ?>"><?php echo $i; ?></a>
+                    <?php endfor; ?>
+
+                    <a href="?halaman=<?php echo $halaman_aktif + 1; ?>" class="page-link <?php if($halaman_aktif >= $total_halaman) echo 'disabled'; ?>">Selanjutnya</a>
                 </div>
             </div>
-        </div>
+            </div>
     </section>
     <footer class="footer">
         <div class="container">
@@ -165,6 +167,8 @@ require_once '../config/koneksi.php'; // Sesuaikan path jika perlu
             </div>
         </div>
     </footer>
+
+    <script src="../aset/main.js"></script>
     
 
 </body>

@@ -1,18 +1,53 @@
+.contact-hero-section {
+    height: 60vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: var(--white);
+}
+
+.hero-content {
+    z-index: 999;
+}
+
+.hero-image-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
 
 
 .contact-hero-text h1 {
-    font-size: 3em; /* Ukuran lebih besar untuk "Hubungi Kami" */
+    font-size: 3em; 
     color: var(--white);
     margin-top: 40px;
     margin-bottom: 10px;
     text-align: center;
 }
 
+
 .contact-hero-text .subtitle {
     font-size: 1.2em;
-    color: var(--accent-color); /* Hijau terang untuk subtitle */
+    color: var(--accent-color); 
     font-weight: 600;
-    text-transform: uppercase;
+    text-transfor: uppercase;
     margin-bottom: 15px;
     text-align: center;
 }
@@ -26,17 +61,16 @@
     text-align: center;
 }
 
-/* Contact Main Section */
 .contact-main-section {
     padding: 60px 0;
-    background-color: var(--light-gray); /* Latar belakang abu-abu muda untuk section */
+    background-color: var(--light-gray); 
 }
 
 .contact-columns-wrapper {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    justify-content: center; /* Agar kolom berada di tengah jika ada sisa ruang */
+    justify-content: center; 
 }
 
 .contact-info-col,
@@ -45,17 +79,17 @@
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    flex: 1; /* Agar kolom bisa membesar */
+    flex: 1; 
 }
 
 .contact-info-col {
-    min-width: 300px; /* Lebar minimum kolom info */
-    max-width: 450px; /* Lebar maksimum kolom info */
+    min-width: 300px; 
+    max-width: 450px; 
 }
 
 .contact-form-col {
-    min-width: 300px; /* Lebar minimum kolom form */
-    max-width: 600px; /* Lebar maksimum kolom form */
+    min-width: 300px; 
+    max-width: 600px; 
 }
 
 .contact-info-col h3,
@@ -70,7 +104,7 @@
 
 .contact-info-item {
     display: flex;
-    align-items: flex-start; /* Icon di atas jika teks panjang */
+    align-items: flex-start; 
     margin-bottom: 20px;
     gap: 15px;
 }
@@ -78,8 +112,8 @@
 .contact-info-item i {
     font-size: 1.5em;
     color: var(--primary-color);
-    margin-top: 5px; /* Sedikit ke bawah agar align dengan teks */
-    width: 30px; /* Lebar tetap untuk ikon */
+    margin-top: 5px; 
+    width: 30px; 
     text-align: center;
 }
 
@@ -93,12 +127,12 @@
     font-size: 0.95em;
     color: var(--dark-gray);
     line-height: 1.5;
-    margin-bottom: 3px; /* Mengurangi margin bawaan paragraf */
+    margin-bottom: 3px; 
 }
 
 .contact-social-icons {
     margin-top: 25px;
-    text-align: left; /* Sesuai gambar, ikon di kiri */
+    text-align: left; 
 }
 
 .contact-social-icons a {
@@ -116,7 +150,7 @@
     color: var(--text-color);
 }
 
-/* Contact Form Styles */
+/* Contact Form */
 .contact-form .form-group {
     margin-bottom: 20px;
 }
@@ -150,7 +184,7 @@
 }
 
 .contact-form textarea {
-    resize: vertical; /* Izinkan resize vertikal saja */
+    resize: vertical; 
     min-height: 120px;
 }
 
@@ -159,7 +193,7 @@
     color: var(--white);
     padding: 12px 25px;
     border: none;
-    border-radius: 25px; /* Sesuai gambar */
+    border-radius: 25px; 
     font-size: 1em;
     font-weight: 600;
     cursor: pointer;
@@ -171,15 +205,14 @@
 }
 
 .btn-kirim-pesan:hover {
-    background-color: #3e8e41; /* Warna hijau lebih gelap */
+    background-color: #3e8e41; 
     transform: translateY(-2px);
 }
 
-/* Responsive adjustments for Contact Page */
 @media (max-width: 992px) {
     .contact-info-col,
     .contact-form-col {
-        max-width: 100%; /* Kolom mengambil lebar penuh di tablet */
+        max-width: 100%; 
         flex-basis: 100%;
     }
 }

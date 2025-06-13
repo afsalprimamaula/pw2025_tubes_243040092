@@ -1,3 +1,33 @@
+.hero-section {
+    height: 60vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: var(--white);
+}
+
+.hero-image-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
 
 
 /* Hero Content */
@@ -12,6 +42,7 @@
     text-align: center;
     padding: 20px;
 }
+
 
 .hero-content .info-reservasi-text {
     flex: 3;
@@ -43,39 +74,38 @@
 }
 
 @media (max-width: 768px) {
-    .info-reservasi-box { /* Pastikan class ini ada di HTML jika rule ini relevan, atau sesuaikan dengan class yang ada */
+    .info-reservasi-box { 
         flex-direction: column;
         padding: 20px;
         max-width: 90%;
     }
 
-    .info-reservasi-box .info-reservasi-text { /* Pastikan class ini ada di HTML jika rule ini relevan */
+    .info-reservasi-box .info-reservasi-text { 
         text-align: center;
         margin-bottom: 20px;
         width: 100%;
     }
 
-     .info-reservasi-box .info-reservasi-text h2 { /* Pastikan class ini ada di HTML jika rule ini relevan */
+     .info-reservasi-box .info-reservasi-text h2 { 
         font-size: 1.8em;
     }
 
-    .info-reservasi-box .info-reservasi-icon-container i { /* Pastikan class ini ada di HTML jika rule ini relevan */
+    .info-reservasi-box .info-reservasi-icon-container i { 
         font-size: 3.5em;
     }
 }
 
-/* Info Cards Section */
 .info-cards-section {
     padding: 50px 0;
-    background-color: #f9f9f9; /* Warna latar belakang abu-abu sangat muda */
+    background-color: #f9f9f9; 
 }
 
 .info-cards-section .container {
     display: flex;
     justify-content: space-around;
-    align-items: stretch; /* Membuat kartu memiliki tinggi yang sama */
-    flex-wrap: wrap; /* Agar kartu turun ke bawah jika layar kecil */
-    gap: 25px; /* Jarak antar kartu */
+    align-items: stretch; 
+    flex-wrap: wrap; 
+    gap: 25px; 
 }
 
 .info-card {
@@ -84,8 +114,8 @@
     border-radius: 8px;
     padding: 25px;
     text-align: center;
-    flex-basis: calc(33.333% - 20px); /* Untuk tiga kartu per baris, dikurangi gap */
-    min-width: 280px; /* Lebar minimum kartu */
+    flex-basis: calc(33.333% - 20px); 
+    min-width: 280px; 
     box-shadow: 0 2px 5px rgba(0,0,0,0.08);
     display: flex;
     flex-direction: column;
@@ -99,7 +129,7 @@
 }
 
 .card-icon {
-    font-size: 2.2em; /* Ukuran ikon */
+    font-size: 2.2em; 
     color: var(--primary-color);
     margin-bottom: 18px;
 }
@@ -117,7 +147,7 @@
     margin-bottom: 8px;
 }
 
-.info-card p:last-of-type { /* Mengatur margin bawah paragraf terakhir sebelum tombol */
+.info-card p:last-of-type { 
     margin-bottom: 15px;
 }
 
@@ -126,22 +156,21 @@
     background-color: var(--primary-color);
     color: var(--white);
     padding: 10px 22px;
-    border-radius: 20px; /* Sesuai dengan login button */
+    border-radius: 20px; 
     text-decoration: none;
     font-weight: 600;
-    margin-top: auto; /* Mendorong tombol ke bagian bawah kartu */
+    margin-top: auto; 
     transition: background-color 0.3s ease;
 }
 
 .card-button:hover {
-    background-color: #3e8e41; /* Warna hijau lebih gelap untuk hover */
+    background-color: #3e8e41; 
     color: var(--white);
 }
 
-/* Responsive adjustments for info cards */
 @media (max-width: 992px) {
     .info-card {
-        flex-basis: calc(50% - 20px); /* Dua kartu per baris */
+        flex-basis: calc(50% - 20px); 
     }
 }
 
@@ -153,56 +182,54 @@
     .info-card {
         flex-basis: 100%;
         width: 85%;
-        max-width: 400px; /* Batas lebar maksimal untuk kartu tunggal */
-        margin-bottom: 20px; /* Jarak antar kartu ketika vertikal */
+        max-width: 400px; 
+        margin-bottom: 20px; 
     }
     .info-cards-section .container {
-        gap: 0; /* Hilangkan gap utama karena margin-bottom pada card sudah menangani */
+        gap: 0; 
     }
 }
 
-/* My Reservations Section */
 .my-reservations-section {
-    background-color: var(--accent-color); /* Menggunakan warna hijau muda dari variabel Anda */
-    padding: 50px 20px; /* Padding atas-bawah dan kiri-kanan */
-    text-align: center; /* Semua teks di tengah */
+    background-color: var(--accent-color); 
+    padding: 50px 20px; 
+    text-align: center; 
 }
 
 .my-reservations-section h2 {
-    font-size: 2.2em; /* Ukuran font untuk judul */
-    color: var(--text-color); /* Warna teks dari variabel */
-    margin-bottom: 15px; /* Jarak bawah dari judul */
-    font-weight: 700; /* Ketebalan font */
+    font-size: 2.2em; 
+    color: var(--text-color); 
+    margin-bottom: 15px; 
+    font-weight: 700; 
 }
 
 .my-reservations-section p {
-    font-size: 1.1em; /* Ukuran font untuk paragraf deskripsi */
-    color: var(--dark-gray); /* Warna teks dari variabel */
-    margin-bottom: 30px; /* Jarak bawah dari paragraf */
-    max-width: 600px; /* Lebar maksimum paragraf agar tidak terlalu memanjang */
-    margin-left: auto; /* Untuk tengahkan paragraf jika max-width tercapai */
-    margin-right: auto; /* Untuk tengahkan paragraf jika max-width tercapai */
+    font-size: 1.1em; 
+    color: var(--dark-gray); 
+    margin-bottom: 30px; 
+    max-width: 600px; 
+    margin-left: auto; 
+    margin-right: auto; 
 }
 
 .btn-lihat-reservasi {
-    display: inline-block; /* Agar bisa diberi padding dan margin */
-    background-color: var(--primary-color); /* Warna utama (hijau) dari variabel */
-    color: var(--white); /* Warna teks putih dari variabel */
-    padding: 12px 30px; /* Padding di dalam tombol */
-    font-size: 1em; /* Ukuran font teks tombol */
-    font-weight: 600; /* Ketebalan font teks tombol */
-    text-decoration: none; /* Hilangkan garis bawah default link */
-    border-radius: 25px; /* Membuat sudut tombol melengkung */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Transisi untuk hover effect */
+    display: inline-block; 
+    background-color: var(--primary-color); 
+    color: var(--white); 
+    padding: 12px 30px; 
+    font-size: 1em; 
+    font-weight: 600; 
+    text-decoration: none; 
+    border-radius: 25px; 
+    transition: background-color 0.3s ease, transform 0.2s ease; 
 }
 
 .btn-lihat-reservasi:hover {
-    background-color: #3e8e41; /* Warna hijau sedikit lebih gelap saat hover */
-    transform: translateY(-2px); /* Efek sedikit terangkat saat hover */
-    color: var(--white); /* Pastikan warna teks tetap putih saat hover */
+    background-color: #3e8e41; 
+    transform: translateY(-2px); 
+    color: var(--white); 
 }
 
-/* Penyesuaian untuk layar yang lebih kecil jika diperlukan */
 @media (max-width: 768px) {
     .my-reservations-section h2 {
         font-size: 1.8em;
@@ -220,7 +247,7 @@
 
 
 
-/* ====== GALLERY SECTION STYLES ====== */
+/* GALLERY  */
 .gallery-section {
     padding: 60px 0;
     background-color: var(--light-gray);
@@ -293,11 +320,9 @@
 
 
 .availability.not-available {
-    background-color: #E74C3C; /* Warna merah untuk tidak tersedia */
+    background-color: #E74C3C; 
 }
 
-
-/* ====== PAGINATION STYLES ====== */
 .pagination-container {
     margin-top: 50px;
     display: flex;
@@ -337,7 +362,7 @@
 }
 
 .page-link.active {
-    background-color: #E67E22; /* Warna oranye sesuai gambar */
+    background-color: #E67E22; 
     color: var(--white);
     border-color: #E67E22;
     font-weight: 700;
@@ -349,8 +374,6 @@
     background-color: #f9f9f9;
 }
 
-
-/* Responsive Adjustments */
 @media (max-width: 992px) {
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
